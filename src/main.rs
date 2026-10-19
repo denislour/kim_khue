@@ -1,4 +1,5 @@
 mod app;
+mod i18n;
 
 #[tokio::main]
 async fn main() {
