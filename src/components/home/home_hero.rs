@@ -1,5 +1,5 @@
 use crate::{
-    components::{
+    components::ui::{
         button::{ButtonSize, ButtonVariant, button_variants},
         separator::separator,
     },

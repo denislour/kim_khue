@@ -1,6 +1,6 @@
 use super::story_card::story_card;
 use crate::{
-    components::{
+    components::ui::{
         button::button,
         input::input,
         label::label,

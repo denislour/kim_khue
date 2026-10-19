@@ -1,5 +1,5 @@
 use crate::{
-    components::{
+    components::ui::{
         accordion::{accordion, accordion_content, accordion_item, accordion_trigger},
         badge::{BadgeVariant, badge},
         card::{card, card_description, card_footer, card_header, card_title},

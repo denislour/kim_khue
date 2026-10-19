@@ -1,5 +1,5 @@
 use crate::{
-    components::button::{ButtonSize, ButtonVariant, button_variants},
+    components::ui::button::{ButtonSize, ButtonVariant, button_variants},
     i18n::I18N,
 };
 use topcoat::{

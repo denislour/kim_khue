@@ -1,7 +1,9 @@
-use crate::components::reader_dialog::reader_dialog;
-use crate::components::site_footer::site_footer;
-use crate::components::site_header::site_header;
-use crate::i18n::I18N;
+use crate::{
+    components::home::{
+        reader_dialog::reader_dialog, site_footer::site_footer, site_header::site_header,
+    },
+    i18n::I18N,
+};
 use topcoat::{
     Result,
     asset::asset,

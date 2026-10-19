@@ -1,5 +1,5 @@
 use crate::{
-    components::{
+    components::ui::{
         badge::{BadgeVariant, badge},
         button::{ButtonSize, ButtonVariant, button},
         dialog::{dialog, dialog_content, dialog_description, dialog_header, dialog_title},

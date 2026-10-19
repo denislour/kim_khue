@@ -1,5 +1,5 @@
 use crate::{
-    components::card::{card, card_content, card_description},
+    components::ui::card::{card, card_content, card_description},
     i18n::I18N,
 };
 use topcoat::{
