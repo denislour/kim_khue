@@ -1,6 +1,7 @@
 mod app;
 mod components;
 mod config;
+mod db;
 mod features;
 mod fonts;
 mod i18n;
@@ -14,7 +15,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 
 #[tokio::main]
-async fn run(_config: Config) -> Result<(), Box<dyn Error>> {
-    topcoat::start(app::router()).await?;
+async fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let db = db::connect(&config.database_url).await?;
+    topcoat::start(app::router(db)).await?;
     Ok(())
 }
