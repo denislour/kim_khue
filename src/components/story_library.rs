@@ -7,7 +7,7 @@ use crate::{
         toggle::{ToggleKind, ToggleSize, toggle, toggle_group},
     },
     features::SAMPLE_STORIES,
-    i18n::TEXT,
+    i18n::I18N,
 };
 use topcoat::{
     Result,
@@ -17,22 +17,22 @@ use topcoat::{
 #[component]
 pub async fn story_library() -> Result<impl View> {
     let genres = [
-        ("all", TEXT.all_genres),
-        ("wuxia", TEXT.wuxia),
-        ("romance", TEXT.romance),
-        ("fantasy", TEXT.fantasy),
+        ("all", I18N.all_genres),
+        ("wuxia", I18N.wuxia),
+        ("romance", I18N.romance),
+        ("fantasy", I18N.fantasy),
     ];
     Ok(view! {
         <section class="library shell" id="library" aria-labelledby="stories-heading">
             <div class="library-heading">
                 <div>
-                    <h2 id="stories-heading">(TEXT.stories_heading)</h2>
-                    <p>(TEXT.library_intro)</p>
+                    <h2 id="stories-heading">(I18N.stories_heading)</h2>
+                    <p>(I18N.library_intro)</p>
                 </div>
                 <form class="search" id="search-form" role="search" hidden=(true)>
                     label(
                         attrs: attributes! { class="sr-only" for="story-search" },
-                        (TEXT.search_label)
+                        (I18N.search_label)
                     )
                     <span aria-hidden="true" class="search-icon"></span>
                     input(
@@ -40,7 +40,7 @@ pub async fn story_library() -> Result<impl View> {
                             id="story-search"
                             type="search"
                             name="q"
-                            placeholder=(TEXT.search_placeholder)
+                            placeholder=(I18N.search_placeholder)
                             autocomplete="off"
                         }
                     )
@@ -51,7 +51,7 @@ pub async fn story_library() -> Result<impl View> {
                     attrs: attributes! {
                         class="genre-filters"
                         role="radiogroup"
-                        aria-label=(TEXT.filter_label)
+                        aria-label=(I18N.filter_label)
                     },
                     for (key, text) in genres {
                         toggle(
@@ -71,13 +71,13 @@ pub async fn story_library() -> Result<impl View> {
                 <output
                     id="results-count"
                     aria-live="polite"
-                    data-label=(TEXT.results_label)
-                    data-one=(TEXT.result_one)
+                    data-label=(I18N.results_label)
+                    data-one=(I18N.result_one)
                 ></output>
             </div>
-            <p class="sample-notice">(TEXT.sample_notice)</p>
+            <p class="sample-notice">(I18N.sample_notice)</p>
             <p class="no-results" hidden=(SAMPLE_STORIES.is_empty())>
-                (TEXT.empty_stories)
+                (I18N.empty_stories)
             </p>
             <div class="books" id="books">
                 for story in SAMPLE_STORIES {
@@ -85,14 +85,14 @@ pub async fn story_library() -> Result<impl View> {
                 }
             </div>
             <div class="no-results" id="no-results" hidden=(true)>
-                <p>(TEXT.no_results)</p>
+                <p>(I18N.no_results)</p>
                 button(
                     attrs: attributes! {
                         id="clear-search"
                         type="button"
                         class="clear-search-button"
                     },
-                    (TEXT.clear_search)
+                    (I18N.clear_search)
                 )
             </div>
         </section>

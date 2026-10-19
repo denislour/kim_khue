@@ -97,4 +97,4 @@ pub const fn messages(locale: Locale) -> &'static Messages {
     }
 }
 
-pub(crate) static TEXT: &Messages = messages(Locale::Vi);
+pub(crate) static I18N: &Messages = messages(Locale::Vi);

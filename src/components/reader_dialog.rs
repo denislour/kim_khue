@@ -8,7 +8,7 @@ use crate::{
         separator::separator,
         toggle::{ToggleSize, toggle},
     },
-    i18n::TEXT,
+    i18n::I18N,
 };
 use topcoat::{
     Result,
@@ -28,17 +28,17 @@ pub async fn reader_dialog() -> Result<impl View> {
             dialog_content(
                 attrs: attributes! { class="reader-panel" },
                 <div class="reader-toolbar">
-                    <span class="reader-brand" translate="no">(TEXT.brand)</span>
+                    <span class="reader-brand" translate="no">(I18N.brand)</span>
                     <div class="reader-settings">
                         label(
                             attrs: attributes! { for="reader-size" },
-                            (TEXT.font_size)
+                            (I18N.font_size)
                         )
                         input(
                             attrs: attributes! {
                                 id="reader-size"
                                 class="reader-size"
-                                aria-label=(TEXT.font_size)
+                                aria-label=(I18N.font_size)
                                 type="range"
                                 min="16"
                                 max="26"
@@ -52,7 +52,7 @@ pub async fn reader_dialog() -> Result<impl View> {
                                 name="reader-night"
                                 class="reader-theme"
                             },
-                            (TEXT.night_mode)
+                            (I18N.night_mode)
                         )
                         button(
                             variant: ButtonVariant::Ghost,
@@ -61,7 +61,7 @@ pub async fn reader_dialog() -> Result<impl View> {
                                 id="reader-close"
                                 class="close-reader"
                                 type="button"
-                                aria-label=(TEXT.close_reader)
+                                aria-label=(I18N.close_reader)
                             },
                             "×"
                         )
@@ -73,7 +73,7 @@ pub async fn reader_dialog() -> Result<impl View> {
                         badge(
                             variant: BadgeVariant::Outline,
                             attrs: attributes! { class="sample-label" },
-                            (TEXT.sample_badge)
+                            (I18N.sample_badge)
                         )
                         dialog_title(attrs: attributes! { id="reader-title" }, "")
                         dialog_description(
@@ -85,10 +85,10 @@ pub async fn reader_dialog() -> Result<impl View> {
                     separator(
                         attrs: attributes! { class="reader-divider" aria-hidden="true" }
                     )
-                    <p class="reader-end">(TEXT.reader_end)</p>
+                    <p class="reader-end">(I18N.reader_end)</p>
                     dialog_description(
                         attrs: attributes! { class="reader-notice" },
-                        (TEXT.reader_notice)
+                        (I18N.reader_notice)
                     )
                 </div>
             )

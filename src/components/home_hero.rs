@@ -3,7 +3,7 @@ use crate::{
         button::{ButtonSize, ButtonVariant, button_variants},
         separator::separator,
     },
-    i18n::TEXT,
+    i18n::I18N,
 };
 use topcoat::{
     Result,
@@ -26,10 +26,10 @@ pub async fn home_hero() -> Result<impl View> {
             <div class="hero-copy">
                 <p class="hero-signature">
                     <span aria-hidden="true"></span>
-                    (TEXT.brand_note)
+                    (I18N.brand_note)
                 </p>
-                <h1 id="hero-title">(TEXT.hero_heading)</h1>
-                <p class="hero-intro">(TEXT.intro)</p>
+                <h1 id="hero-title">(I18N.hero_heading)</h1>
+                <p class="hero-intro">(I18N.intro)</p>
                 <a
                     class=(class!(
                         button_variants(ButtonVariant::Primary, ButtonSize::Lg),
@@ -37,12 +37,12 @@ pub async fn home_hero() -> Result<impl View> {
                     ))
                     href="#library"
                 >
-                    (TEXT.explore)
+                    (I18N.explore)
                     <span aria-hidden="true">" ↗"</span>
                 </a>
-                <p class="hero-footnote">(TEXT.hero_footnote)</p>
+                <p class="hero-footnote">(I18N.hero_footnote)</p>
             </div>
-            <p class="landscape-inscription">(TEXT.hero_quote)</p>
+            <p class="landscape-inscription">(I18N.hero_quote)</p>
             <div class="hero-bottom" aria-hidden="true">
                 separator(attrs: attributes! { class="hero-rule" })
                 <img src=(asset!("assets/logo.svg")) width="30" height="30" alt="">

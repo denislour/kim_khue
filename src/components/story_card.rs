@@ -5,7 +5,7 @@ use crate::{
         card::{card, card_description, card_footer, card_header, card_title},
     },
     features::Story,
-    i18n::TEXT,
+    i18n::I18N,
 };
 use topcoat::{
     Result,
@@ -44,7 +44,7 @@ pub async fn story_card(story: &Story) -> Result<impl View> {
                 >
                 <div class="cover-title">
                     <span>(story.title)</span>
-                    <span class="cover-author">(TEXT.brand)</span>
+                    <span class="cover-author">(I18N.brand)</span>
                 </div>
                 <span class="cover-seal">"KK"</span>
                 <span class="cover-rule"></span>
@@ -60,7 +60,7 @@ pub async fn story_card(story: &Story) -> Result<impl View> {
                     badge(
                         variant: BadgeVariant::Outline,
                         attrs: attributes! { class="sample-label" },
-                        (TEXT.sample_badge)
+                        (I18N.sample_badge)
                     )
                 </div>
                 card_title(
@@ -77,7 +77,7 @@ pub async fn story_card(story: &Story) -> Result<impl View> {
                 accordion(
                     accordion_item(
                         attrs: attributes! { class="story-preview" },
-                        accordion_trigger((TEXT.read_sample))
+                        accordion_trigger((I18N.read_sample))
                         accordion_content(
                             attrs: attributes! { class="excerpt" },
                             <h4>(story.chapter)</h4>
