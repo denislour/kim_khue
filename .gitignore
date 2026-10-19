@@ -1,7 +1,7 @@
 /target
 /docs
 /.env
-/kimkhue.db
-/kimkhue.db-shm
-/kimkhue.db-wal
-/kimkhue.db-journal
+/kim_khue.db
+/kim_khue.db-shm
+/kim_khue.db-wal
+/kim_khue.db-journal

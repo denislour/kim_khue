@@ -1,8 +1,8 @@
 [package]
-name = "kimkhue"
+name = "kim_khue"
 version = "0.1.0"
 edition = "2024"
-default-run = "kimkhue"
+default-run = "kim_khue"
 
 [dependencies]
 dotenvy = "0.15.7"

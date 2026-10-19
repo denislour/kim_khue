@@ -1,4 +1,4 @@
-# kimkhue
+# kim_khue
 
 A [Topcoat](https://github.com/tokio-rs/topcoat) application.
 

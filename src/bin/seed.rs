@@ -1,4 +1,4 @@
-use kimkhue::{config::Config, db, seed};
+use kim_khue::{config::Config, db, seed};
 use std::{env, error::Error};
 
 fn main() -> Result<(), Box<dyn Error>> {

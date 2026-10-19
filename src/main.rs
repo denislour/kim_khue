@@ -1,4 +1,4 @@
-use kimkhue::{config::Config, db, router};
+use kim_khue::{config::Config, db, router};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
