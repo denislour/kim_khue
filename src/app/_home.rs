@@ -1,11 +1,10 @@
 use crate::components::accordion::{
     accordion, accordion_content, accordion_item, accordion_trigger,
 };
+use crate::components::author_intro::author_intro;
 use crate::components::badge::{BadgeVariant, badge};
 use crate::components::button::button;
-use crate::components::card::{
-    card, card_content, card_description, card_footer, card_header, card_title,
-};
+use crate::components::card::{card, card_description, card_footer, card_header, card_title};
 use crate::components::home_hero::home_hero;
 use crate::components::input::input;
 use crate::components::label::label;
@@ -184,27 +183,7 @@ async fn home() -> Result<impl View> {
                 </div>
             </section>
 
-            <section class="shell" id="about" aria-labelledby="about-heading">
-                card(
-                    attrs: attributes! { class="about" },
-                    card_content(
-                        attrs: attributes! { class="about-art" aria-hidden="true" },
-                        <img
-                            src=(asset!("assets/logo.svg"))
-                            width="160"
-                            height="160"
-                            alt=""
-                        >
-                        <span>(TEXT.brand)</span>
-                    )
-                    card_content(
-                        attrs: attributes! { class="about-copy" },
-                        <h2 id="about-heading">(TEXT.about_heading)</h2>
-                        card_description((TEXT.about_text))
-                        <p class="author-note">(TEXT.about_note)</p>
-                    )
-                )
-            </section>
+            author_intro()
         </main>
     })
 }

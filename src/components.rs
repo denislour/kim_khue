@@ -1,4 +1,5 @@
 pub mod accordion;
+pub mod author_intro;
 pub mod badge;
 pub mod button;
 pub mod card;
