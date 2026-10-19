@@ -96,6 +96,8 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 .sample-label { color: var(--muted); font: 10px/1.6 var(--ui); }
 .story-title { font: 500 27px/1.2 var(--display); margin-top: 11px; }
 .story-summary { font: 12px/1.95 var(--reading); color: #725d42; margin-top: 12px; min-height: 72px; max-width: 38ch; }
+.no-results { padding: 50px 0; font: 15px/1.8 var(--reading); }
+.no-results button { padding: 10px 16px; margin-top: 15px; background: var(--ochre); color: white; font-size: 12px; }
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-block: 38px; }
 .footer-brand { font: 500 25px/1.2 var(--display); text-decoration: none; }
 .site-footer p, .site-footer > a:last-child { font-size: 10px; color: var(--muted); }

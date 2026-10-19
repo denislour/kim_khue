@@ -167,6 +167,9 @@ async fn home() -> Result<impl View> {
                     </div>
                 </div>
                 <p class="sample-notice">(TEXT.sample_notice)</p>
+                <p class="no-results" hidden=(SAMPLE_STORIES.is_empty())>
+                    (TEXT.empty_stories)
+                </p>
                 <div class="books" id="books">
                     for story in SAMPLE_STORIES {
                         card(
