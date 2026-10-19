@@ -96,3 +96,5 @@ pub const fn messages(locale: Locale) -> &'static Messages {
         Locale::Vi => &VI,
     }
 }
+
+pub(crate) static TEXT: &Messages = messages(Locale::Vi);
