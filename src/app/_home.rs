@@ -2,13 +2,13 @@ use crate::components::accordion::{
     accordion, accordion_content, accordion_item, accordion_trigger,
 };
 use crate::components::badge::{BadgeVariant, badge};
-use crate::components::button::{ButtonSize, ButtonVariant, button, button_variants};
+use crate::components::button::button;
 use crate::components::card::{
     card, card_content, card_description, card_footer, card_header, card_title,
 };
+use crate::components::home_hero::home_hero;
 use crate::components::input::input;
 use crate::components::label::label;
-use crate::components::separator::separator;
 use crate::components::toggle::{ToggleKind, ToggleSize, toggle, toggle_group};
 use crate::features::SAMPLE_STORIES;
 use crate::i18n::TEXT;
@@ -16,7 +16,7 @@ use topcoat::{
     Result,
     asset::{Asset, asset},
     router::page,
-    view::{View, attributes, class, view},
+    view::{View, attributes, view},
 };
 
 fn cover(name: &str) -> Asset {
@@ -37,41 +37,7 @@ async fn home() -> Result<impl View> {
     ];
     Ok(view! {
         <main id="main">
-            <section class="hero shell" aria-labelledby="hero-title">
-                <img
-                    class="hero-landscape"
-                    src=(asset!("assets/landscape.svg"))
-                    width="1000"
-                    height="690"
-                    alt=""
-                    fetchpriority="high"
-                >
-                <div class="hero-copy">
-                    <p class="hero-signature">
-                        <span aria-hidden="true"></span>
-                        (TEXT.brand_note)
-                    </p>
-                    <h1 id="hero-title">(TEXT.hero_heading)</h1>
-                    <p class="hero-intro">(TEXT.intro)</p>
-                    <a
-                        class=(class!(
-                            button_variants(ButtonVariant::Primary, ButtonSize::Lg),
-                            "primary-link",
-                        ))
-                        href="#library"
-                    >
-                        (TEXT.explore)
-                        <span aria-hidden="true">" ↗"</span>
-                    </a>
-                    <p class="hero-footnote">(TEXT.hero_footnote)</p>
-                </div>
-                <p class="landscape-inscription">(TEXT.hero_quote)</p>
-                <div class="hero-bottom" aria-hidden="true">
-                    separator(attrs: attributes! { class="hero-rule" })
-                    <img src=(asset!("assets/logo.svg")) width="30" height="30" alt="">
-                    separator(attrs: attributes! { class="hero-rule" })
-                </div>
-            </section>
+            home_hero()
 
             <section
                 class="library shell"
