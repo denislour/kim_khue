@@ -10,6 +10,25 @@ Install the Topcoat CLI:
 cargo install topcoat-cli
 ```
 
+Copy `.env.example` to `.env` and configure `DATABASE_URL`:
+
+```sh
+cp .env.example .env
+```
+
+Initialize a new database and seed the three demo stories:
+
+```sh
+cargo run --bin seed -- --init
+```
+
+For an existing database, seed without creating tables. Stories whose slugs
+already exist are skipped:
+
+```sh
+cargo run --bin seed
+```
+
 Start the development server, which rebuilds the application when you edit its source:
 
 ```sh
@@ -42,7 +61,10 @@ static TEXT: &Messages = messages(Locale::Vi);
 
 Danh sách truyện và phần đọc thử dùng HTML `<details>`. Giao diện tìm kiếm và
 bộ lọc đang ẩn; các thao tác trong dialog đọc chưa được nối bằng procedure/signal.
-Toasty với SQLite đã được thêm làm dependency; kết nối database chưa được triển khai.
+The application connects to SQLite through Toasty and registers the database
+in the app context. The interface still reads `SAMPLE_STORIES`; the seed command
+only inserts data into the database. Starting the server does not create tables
+or seed data automatically.
 
 Để chạy bản build trực tiếp, cần bundle tài nguyên trước:
 
@@ -57,6 +79,9 @@ cargo run
 | --- | --- |
 | `src/app.rs`, `src/app/` | The route tree: the router, layouts, pages, and routes. |
 | `src/features.rs`, `src/features/` | Everything one feature owns, such as its data and business rules. |
+| `src/config.rs` | Load `.env` and application configuration before starting Tokio. |
+| `src/db.rs`, `src/model.rs` | Shared Toasty database connection and models. |
+| `src/bin/seed.rs`, `src/seed.rs` | Separate seed command and demo data insertion. |
 
 Pages in `app` use features and components. A feature can use shared components but never imports from `app`, and shared components never import from a feature.
 
