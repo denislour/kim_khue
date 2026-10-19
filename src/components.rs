@@ -11,4 +11,5 @@ pub mod reader_dialog;
 pub mod separator;
 pub mod site_footer;
 pub mod site_header;
+pub mod story_card;
 pub mod toggle;

@@ -1,30 +1,17 @@
-use crate::components::accordion::{
-    accordion, accordion_content, accordion_item, accordion_trigger,
-};
 use crate::components::author_intro::author_intro;
-use crate::components::badge::{BadgeVariant, badge};
 use crate::components::button::button;
-use crate::components::card::{card, card_description, card_footer, card_header, card_title};
 use crate::components::home_hero::home_hero;
 use crate::components::input::input;
 use crate::components::label::label;
+use crate::components::story_card::story_card;
 use crate::components::toggle::{ToggleKind, ToggleSize, toggle, toggle_group};
 use crate::features::SAMPLE_STORIES;
 use crate::i18n::TEXT;
 use topcoat::{
     Result,
-    asset::{Asset, asset},
     router::page,
     view::{View, attributes, view},
 };
-
-fn cover(name: &str) -> Asset {
-    match name {
-        "mai" => asset!("assets/hoa-mai.svg"),
-        "moon" => asset!("assets/moon.svg"),
-        _ => asset!("assets/landscape.svg"),
-    }
-}
 
 #[page]
 async fn home() -> Result<impl View> {
@@ -100,74 +87,7 @@ async fn home() -> Result<impl View> {
                 </p>
                 <div class="books" id="books">
                     for story in SAMPLE_STORIES {
-                        card(
-                            attrs: attributes! {
-                                class="story"
-                                id=(format!("story-{}", story.id))
-                                data-genre=(story.genre_key)
-                                role="article"
-                                aria-labelledby=(format!("title-{}", story.id))
-                            },
-                            <div
-                                class=(format!("book-cover cover-{}", story.cover))
-                                aria-hidden="true"
-                            >
-                                <span class="book-binding"></span>
-                                <img
-                                    class="cover-art"
-                                    src=(cover(story.cover))
-                                    width="400"
-                                    height="500"
-                                    alt=""
-                                    loading="lazy"
-                                >
-                                <div class="cover-title">
-                                    <span>(story.title)</span>
-                                    <span class="cover-author">(TEXT.brand)</span>
-                                </div>
-                                <span class="cover-seal">"KK"</span>
-                                <span class="cover-rule"></span>
-                            </div>
-                            card_header(
-                                attrs: attributes! { class="book-copy" },
-                                <div class="book-meta">
-                                    badge(
-                                        variant: BadgeVariant::Outline,
-                                        attrs: attributes! { class="genre-badge" },
-                                        (story.genre)
-                                    )
-                                    badge(
-                                        variant: BadgeVariant::Outline,
-                                        attrs: attributes! { class="sample-label" },
-                                        (TEXT.sample_badge)
-                                    )
-                                </div>
-                                card_title(
-                                    attrs: attributes! { class="story-title" id=(format!("title-{}", story.id)) },
-                                    (story.title)
-                                )
-                                card_description(
-                                    attrs: attributes! { class="story-summary" },
-                                    (story.summary)
-                                )
-                            )
-                            card_footer(
-                                attrs: attributes! { class="book-actions" },
-                                accordion(
-                                    accordion_item(
-                                        attrs: attributes! { class="story-preview" },
-                                        accordion_trigger((TEXT.read_sample))
-                                        accordion_content(
-                                            attrs: attributes! { class="excerpt" },
-                                            <h4>(story.chapter)</h4>
-                                            for paragraph in story.excerpt {
-                                                <p>(paragraph)</p>
-                                            }
-                                        )
-                                    )
-                                )
-                            )
-                        )
+                        story_card(story: story)
                     }
                 </div>
                 <div class="no-results" id="no-results" hidden=(true)>
