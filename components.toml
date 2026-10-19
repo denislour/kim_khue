@@ -8,6 +8,10 @@ registry = "topcoat"
 hash = "sha256:6e451a2d3470b0ee544ccf4240da8631bad4c807a06ae0d3a1fc77154b86c3b9"
 file = "styles.css"
 
+[registries.topcoat.components.accordion]
+hash = "sha256:201009cf7fee67a40c6be4948f03147f078ccad495ba5ac69f76fdaa64a89c47"
+file = "src/components/accordion.rs"
+
 [registries.topcoat.components.badge]
 hash = "sha256:1601ea9b4650a1d90483a4d9497d413c05d4f72ed6db2f57a2549f65db393d88"
 file = "src/components/badge.rs"

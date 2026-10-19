@@ -9,6 +9,7 @@ use topcoat::{
 
 use crate::{
     components::{
+        accordion::{accordion, accordion_content, accordion_item, accordion_trigger},
         badge::{BadgeVariant, badge},
         button::{ButtonSize, ButtonVariant, button, button_variants},
         card::{card, card_content, card_description, card_footer, card_header, card_title},
@@ -275,6 +276,22 @@ async fn home() -> Result<impl View> {
                                 card_description(
                                     attrs: attributes! { class="story-summary" },
                                     (story.summary)
+                                )
+                            )
+                            card_footer(
+                                attrs: attributes! { class="book-actions" },
+                                accordion(
+                                    accordion_item(
+                                        attrs: attributes! { class="story-preview" },
+                                        accordion_trigger((TEXT.read_sample))
+                                        accordion_content(
+                                            attrs: attributes! { class="excerpt" },
+                                            <h4>(story.chapter)</h4>
+                                            for paragraph in story.excerpt {
+                                                <p>(paragraph)</p>
+                                            }
+                                        )
+                                    )
                                 )
                             )
                         )
