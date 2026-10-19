@@ -24,6 +24,10 @@ file = "src/components/button.rs"
 hash = "sha256:0d0599fb85b42d341aea108fadb25937afdd47b0521d1246dc2bf3bda42f1367"
 file = "src/components/card.rs"
 
+[registries.topcoat.components.dialog]
+hash = "sha256:df9073df351770ee0282b9c64b7724caa0422fb51d7823fd3615688f4d02ddf6"
+file = "src/components/dialog.rs"
+
 [registries.topcoat.components.input]
 hash = "sha256:7fe8728a839a821af865711347189a00c29ba28b8b11dcc0d2ee06a053ca127c"
 file = "src/components/input.rs"

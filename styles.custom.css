@@ -124,6 +124,32 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 .footer-brand { font: 500 25px/1.2 var(--display); text-decoration: none; }
 .site-footer p, .site-footer > a:last-child { font-size: 10px; color: var(--muted); }
 .site-footer > a:last-child { text-decoration: none; }
+.reader { opacity: 1; transition: none; --reader-paper: var(--popover); --reader-ink: #4c3825; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 24px 16px; border: 0; background: transparent; color: var(--reader-ink); overflow-y: auto; overscroll-behavior: contain; backdrop-filter: none; }
+.reader:not([open]) { display: none; }
+.reader[open] { display: flex; align-items: flex-start; justify-content: center; }
+.reader::backdrop { background: #352617a6; backdrop-filter: blur(5px); }
+.reader.dark { --reader-paper: #30271e; --reader-ink: #eee0c4; color-scheme: dark; }
+.reader .reader-panel { opacity: 1; scale: 1; transition: none; display: block; flex-shrink: 0; width: min(860px, 100%); max-width: 860px; max-height: calc(100dvh - 48px); margin: auto; padding: 0; gap: 0; border: 1px solid #bea477; border-radius: 0; background: var(--reader-paper); color: var(--reader-ink); box-shadow: none; overflow-y: auto; overscroll-behavior: contain; }
+.reader-heading { display: block; }
+.reader-divider { margin-top: 40px; background: #b3956266; }
+.reader-toolbar { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 24px; background: var(--reader-paper); border-bottom: 1px solid #b3956255; }
+.reader-brand { font: 500 25px/1 var(--display); }
+.reader-settings { display: flex; align-items: center; gap: 14px; font-size: 11px; }
+.reader-settings input[type="range"] { width: 80px; height: 20px; padding: 0; border: 0; border-radius: 0; box-shadow: none; accent-color: var(--primary); }
+.reader-settings button, .reader-settings .reader-theme { transition: none; color: inherit; background: transparent; padding: 8px; border: 1px solid #b3956266; }
+.reader-settings button:hover, .reader-settings .reader-theme:hover { background: #b3956226; }
+.reader-settings .reader-theme { height: auto; font-size: 11px; }
+.reader-settings .reader-theme:has(:checked) { background: #b3956233; border-color: var(--gold); }
+.reader-settings .close-reader { font: 24px/1 var(--ui); border: 0; min-width: 36px; min-height: 36px; }
+.reader-page { padding: 48px 72px 64px; }
+.reader h2 { font-size: 44px; margin-top: 16px; }
+.reader-chapter { color: var(--reader-ink); font: 13px/1.8 var(--ui); margin-top: 18px; opacity: .75; }
+.reader-prose { font: 400 var(--reader-size, 20px)/1.95 var(--reading); margin-top: 36px; }
+.reader-prose p + p { margin-top: 1.25em; }
+.reader-prose p:first-child::first-letter { font-size: 2.5em; line-height: 1; float: left; margin: 8px 8px 0 0; color: var(--gold); }
+.reader-end { font: 15px/1.8 var(--display); text-align: center; margin-top: 0; padding-top: 25px; }
+.reader-notice { font: 10px/1.8 var(--ui); opacity: .85; text-align: center; margin-top: 12px; }
+body.reading { overflow: hidden; }
 @media (min-width: 1450px) { .hero-landscape { right: -80px; width: 910px; } }
 @media (max-width: 1000px) {
   .shell { width: calc(100% - 64px); }
@@ -174,6 +200,15 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   .story-summary { font-size: 11px; min-height: 0; }
   .site-footer { flex-wrap: wrap; gap: 14px; padding-block: 28px; }
   .site-footer p { width: 100%; order: 2; }
+  .reader { padding: 10px; }
+  .reader .reader-panel { max-height: calc(100dvh - 20px); }
+  .reader-toolbar { gap: 10px; padding: 12px 15px; }
+  .reader-brand { font-size: 21px; }
+  .reader-settings { gap: 9px; font-size: 10px; }
+  .reader-settings > label[for="reader-size"] { display: none; }
+  .reader-settings input[type="range"] { width: 60px; }
+  .reader-page { padding: 30px 24px 40px; }
+  .reader h2 { font-size: 36px; }
 }
 @media (max-width: 420px) {
   .main-nav { gap: 11px; }
@@ -195,6 +230,8 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+.reader .sample-label { color: var(--reader-ink); opacity: .75; }
 
 .main-nav a { height: auto; padding-inline: 0; border: 0; border-radius: 0; background: transparent; font-weight: 400; }
 .header-reading { height: auto; padding-inline: 0; border: 0; border-bottom: 1px solid var(--gold); border-radius: 0; background: transparent; font-weight: 400; }
