@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 tokio = { version = "1.51.1", features = ["macros", "rt-multi-thread"] }
-topcoat = { version = "0.10.0", default-features = false, features = ["asset", "discover", "router", "serve", "view", "tailwind"] }
+topcoat = { version = "0.10.0", default-features = false, features = ["asset", "discover", "router", "serve", "view", "tailwind", "icon-iconify"] }
 
 # Speed up compilation while keeping file and line numbers in error backtraces.
 [profile.dev]
@@ -16,4 +16,4 @@ debug = "line-tables-only"
 debug = false
 
 [build-dependencies]
-topcoat = { version = "0.10.0", default-features = false, features = ["tailwind"] }
+topcoat = { version = "0.10.0", default-features = false, features = ["tailwind", "icon-iconify"] }

@@ -1467,6 +1467,8 @@ dependencies = [
  "topcoat-core-macro",
  "topcoat-font",
  "topcoat-font-macro",
+ "topcoat-icon",
+ "topcoat-icon-macro",
  "topcoat-mail",
  "topcoat-router",
  "topcoat-router-macro",
@@ -1589,6 +1591,48 @@ dependencies = [
  "quote",
  "syn 3.0.9",
  "topcoat-font-grammar",
+]
+
+[[package]]
+name = "topcoat-icon"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0fff5d75e3ce64d829298966478b1600ddaf7d59443b98fe6a988083a811e78"
+dependencies = [
+ "serde",
+ "serde_json",
+ "thiserror",
+ "topcoat-core",
+ "topcoat-view",
+ "topcoat-view-macro",
+ "ureq",
+]
+
+[[package]]
+name = "topcoat-icon-grammar"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9c1e552405ea69ed765b83642b4802b20e2dc6bc421c73de44c862877df05375"
+dependencies = [
+ "heck",
+ "proc-macro2",
+ "quote",
+ "serde_json",
+ "syn 3.0.9",
+ "topcoat-core-grammar",
+ "topcoat-icon",
+]
+
+[[package]]
+name = "topcoat-icon-macro"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a73b2d243486e5561dd756e1517fb5d83703308fb6ab7e693fb318f93f915673"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
+ "topcoat-icon-grammar",
 ]
 
 [[package]]
