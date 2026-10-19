@@ -80,6 +80,12 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 .search input::placeholder { color: var(--muted); }
 .search-icon { width: 13px; height: 13px; border: 1.4px solid var(--muted); border-radius: 50%; flex-shrink: 0; position: relative; margin-right: 3px; }
 .search-icon::after { content: ""; width: 6px; height: 1px; background: var(--muted); position: absolute; top: 11px; left: 9px; transform: rotate(45deg); }
+.library-tools { display: flex; align-items: center; justify-content: space-between; margin-top: 30px; gap: 20px; }
+.genre-filters { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; border-radius: 0; }
+.genre-filters .genre-toggle { font-size: 11px; background: transparent; border: 1px solid transparent; padding: 9px 17px; border-radius: 2px; }
+.genre-filters .genre-toggle:hover { background: #eadbbd; }
+.genre-filters .genre-toggle:has(:checked) { background: #e8d6ad; border-color: #c7ac76; color: #61431f; }
+#results-count { font-size: 10px; color: var(--muted); white-space: nowrap; }
 .sample-notice { font-size: 10px; line-height: 1.7; color: var(--muted); margin-block: 20px 26px; }
 .books { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px; }
 .story { display: block; min-width: 0; scroll-margin-top: 32px; padding: 0; gap: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
@@ -145,6 +151,10 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   .library-heading { align-items: start; flex-direction: column; gap: 20px; }
   h2 { font-size: 35px; }
   .search { width: 100%; }
+  .library-tools { margin-top: 21px; gap: 10px; }
+  .genre-filters { gap: 3px; }
+  .genre-filters .genre-toggle { padding: 8px 10px; font-size: 10px; }
+  #results-count { font-size: 9px; }
   .sample-notice { font-size: 9px; }
   .books { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 25px; }
   .book-cover { height: 290px; margin-right: 6px; }
@@ -170,6 +180,8 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   .cover-title { right: 12px; }
   .cover-author { display: none; }
   .story-title { font-size: 23px; }
+  .genre-filters .genre-toggle { padding-inline: 8px; }
+  .library-tools { align-items: start; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

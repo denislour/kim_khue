@@ -15,6 +15,7 @@ use crate::{
         input::input,
         label::label,
         separator::separator,
+        toggle::{ToggleKind, ToggleSize, toggle, toggle_group},
     },
     features::SAMPLE_STORIES,
     i18n::{Locale, Messages, messages},
@@ -119,6 +120,12 @@ async fn root(cx: &Cx, slot: Slot<'_>) -> Result<impl View> {
 
 #[page]
 async fn home() -> Result<impl View> {
+    let genres = [
+        ("all", TEXT.all_genres),
+        ("wuxia", TEXT.wuxia),
+        ("romance", TEXT.romance),
+        ("fantasy", TEXT.fantasy),
+    ];
     Ok(view! {
         <main id="main">
             <section class="hero shell" aria-labelledby="hero-title">
@@ -183,6 +190,35 @@ async fn home() -> Result<impl View> {
                             }
                         )
                     </form>
+                </div>
+                <div class="library-tools" id="library-tools" hidden=(true)>
+                    toggle_group(
+                        attrs: attributes! {
+                            class="genre-filters"
+                            role="radiogroup"
+                            aria-label=(TEXT.filter_label)
+                        },
+                        for (key, text) in genres {
+                            toggle(
+                                kind: ToggleKind::Exclusive,
+                                size: ToggleSize::Sm,
+                                attrs: attributes! {
+                                    name="genre"
+                                    value=(key)
+                                    data-genre=(key)
+                                    checked=(key == "all")
+                                    class="genre-toggle"
+                                },
+                                (text)
+                            )
+                        }
+                    )
+                    <output
+                        id="results-count"
+                        aria-live="polite"
+                        data-label=(TEXT.results_label)
+                        data-one=(TEXT.result_one)
+                    ></output>
                 </div>
                 <p class="sample-notice">(TEXT.sample_notice)</p>
                 <p class="no-results" hidden=(SAMPLE_STORIES.is_empty())>

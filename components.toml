@@ -31,3 +31,7 @@ file = "src/components/label.rs"
 [registries.topcoat.components.separator]
 hash = "sha256:7ba5a7628128e1811e960884bd56da34f754c1d516230b4442dfbc1cb97e73e9"
 file = "src/components/separator.rs"
+
+[registries.topcoat.components.toggle]
+hash = "sha256:94a5bb621214d3aaa2abc29b79392fdb6f7706129596de9a8b66567f5fc1f15a"
+file = "src/components/toggle.rs"
