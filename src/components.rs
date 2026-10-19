@@ -12,4 +12,5 @@ pub mod separator;
 pub mod site_footer;
 pub mod site_header;
 pub mod story_card;
+pub mod story_library;
 pub mod toggle;
