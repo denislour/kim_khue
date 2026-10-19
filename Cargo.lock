@@ -668,6 +668,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "inventory"
+version = "0.3.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6928282826c822ad91bf1c9a1cb90a30ba1c26770749929b4656cd6be829cd7c"
+dependencies = [
+ "rustversion",
+]
+
+[[package]]
 name = "ipnet"
 version = "2.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1335,6 +1344,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c7802e424033acc38249ada210b380d9846243b2830e097163780569990f8dfe"
 dependencies = [
  "futures-util",
+ "inventory",
  "serde",
  "tokio",
  "tokio-tungstenite",
@@ -1347,6 +1357,7 @@ dependencies = [
  "topcoat-router",
  "topcoat-router-macro",
  "topcoat-runtime",
+ "topcoat-runtime-macro",
  "topcoat-session",
  "topcoat-view",
  "topcoat-view-macro",
@@ -1431,6 +1442,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4ccfde441afe9559296586891317bc8bd332bed8bfb4daaf78578d2f4f5f08ae"
 dependencies = [
  "heck",
+ "inventory",
  "serde",
  "serde_json",
  "topcoat-asset",
@@ -1471,6 +1483,7 @@ dependencies = [
  "http-body-util",
  "hyper",
  "hyper-util",
+ "inventory",
  "ipnet",
  "matchit",
  "percent-encoding",
@@ -1527,6 +1540,33 @@ dependencies = [
  "topcoat-router",
  "topcoat-view",
  "topcoat-view-macro",
+]
+
+[[package]]
+name = "topcoat-runtime-grammar"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c06ec39c3d5d030d3682ecb1e065db908ec83b85e8a813d1d907ca483a24394c"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "serde",
+ "serde_json",
+ "syn 3.0.9",
+ "topcoat-core-grammar",
+ "topcoat-router",
+ "topcoat-runtime",
+]
+
+[[package]]
+name = "topcoat-runtime-macro"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a8aac99e8ff2cf5cd11b010048515fe5a4e5b7e5feefe6c55f30795b778a90eb"
+dependencies = [
+ "quote",
+ "syn 3.0.9",
+ "topcoat-runtime-grammar",
 ]
 
 [[package]]
