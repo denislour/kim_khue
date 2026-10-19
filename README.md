@@ -37,36 +37,38 @@ topcoat dev
 
 Then open <http://127.0.0.1:3000>.
 
-## Giao diện Kim Khuê
+## Kim Khuê interface
 
-Thiết kế thư viện cổ trang với tranh sơn thủy, logo SVG riêng và bìa sách đóng chỉ.
-Các truyện hiện có là **nội dung minh họa**, có thể thay bằng sáng tác của bạn
-trong `src/features.rs` (danh sách `SAMPLE_STORIES`).
+A literary library inspired by historical settings, with landscape artwork,
+a custom SVG logo, and covers styled after thread-bound books.
+The current stories are **demo content**. Replace them with your own writing
+in the `SAMPLE_STORIES` list in `src/features.rs`.
 
-- `src/app.rs`: layout và HTML qua macro `view!` của Topcoat.
-- `src/i18n.rs`: thông điệp giao diện; hiện bật tiếng Việt.
-- `src/features.rs`: cấu trúc dữ liệu `Story` và truyện mẫu.
-- `styles.css`: theme vàng đất của Topcoat UI và cấu hình Tailwind.
-- `styles.custom.css`: typography, responsive và cách trình bày riêng của Kim Khuê.
-- `src/components/`: component Topcoat UI.
-- `app.js`: bản sao lưu logic JavaScript cũ, hiện không được nhúng vào trang.
-- `src/fonts.rs`, `assets/fonts/`: font tự lưu trên máy chủ, có dấu tiếng Việt và giấy phép OFL.
-- `assets/*.svg`: logo, tranh và bìa sách vẽ riêng.
+- `src/app.rs`: page layout and HTML rendered with Topcoat's `view!` macro.
+- `src/i18n.rs`: interface messages; Vietnamese is currently enabled.
+- `src/features.rs`: the sample `Story` data structure and demo stories.
+- `styles.css`: the white and earth-gold Topcoat UI theme and Tailwind configuration.
+- `styles.custom.css`: typography, responsive layouts, and custom presentation.
+- `src/components/`: Topcoat UI components.
+- `app.js`: a backup of the legacy JavaScript logic, currently excluded from the page.
+- `src/fonts.rs`, `assets/fonts/`: self-hosted fonts with Vietnamese support and OFL licenses.
+- `assets/*.svg`: custom logo, landscape artwork, and story covers.
 
-Chọn ngôn ngữ bằng `static TEXT` trong `src/app.rs`:
+The interface locale is selected by `static TEXT` in `src/app.rs`:
 
 ```rust
 static TEXT: &Messages = messages(Locale::Vi);
 ```
 
-Danh sách truyện và phần đọc thử dùng HTML `<details>`. Giao diện tìm kiếm và
-bộ lọc đang ẩn; các thao tác trong dialog đọc chưa được nối bằng procedure/signal.
+Story previews use native HTML `<details>` elements. Search and filter controls
+are currently hidden, and reading dialog actions have not yet been connected
+to procedures or signals.
 The application connects to SQLite through Toasty and registers the database
 in the app context. The interface still reads `SAMPLE_STORIES`; the seed command
 only inserts data into the database. Starting the server does not create tables
 or seed data automatically.
 
-Để chạy bản build trực tiếp, cần bundle tài nguyên trước:
+To run the application directly, bundle its assets first:
 
 ```sh
 topcoat asset bundle
