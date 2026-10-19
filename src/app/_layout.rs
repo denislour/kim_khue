@@ -1,11 +1,12 @@
 use crate::components::badge::{BadgeVariant, badge};
-use crate::components::button::{ButtonSize, ButtonVariant, button, button_variants};
+use crate::components::button::{ButtonSize, ButtonVariant, button};
 use crate::components::dialog::{
     dialog, dialog_content, dialog_description, dialog_header, dialog_title,
 };
 use crate::components::input::input;
 use crate::components::label::label;
 use crate::components::separator::separator;
+use crate::components::site_footer::site_footer;
 use crate::components::site_header::site_header;
 use crate::components::toggle::{ToggleSize, toggle};
 use crate::i18n::TEXT;
@@ -14,7 +15,7 @@ use topcoat::{
     asset::asset,
     context::Cx,
     router::{Slot, layout},
-    view::{View, attributes, class, view},
+    view::{View, attributes, view},
 };
 
 #[layout("/")]
@@ -40,20 +41,7 @@ async fn root(cx: &Cx, slot: Slot<'_>) -> Result<impl View> {
                 <a class="skip-link" href="#main">(TEXT.skip_content)</a>
                 site_header()
                 (slot)
-                <footer class="site-footer shell">
-                    <a class="footer-brand" href="#top" translate="no">(TEXT.brand)</a>
-                    <p>(TEXT.footer)</p>
-                    <a
-                        class=(class!(
-                            button_variants(ButtonVariant::Ghost, ButtonSize::Sm),
-                            "back-to-top",
-                        ))
-                        href="#top"
-                    >
-                        (TEXT.back_top)
-                        <span aria-hidden="true">" ↑"</span>
-                    </a>
-                </footer>
+                site_footer()
                 dialog(
                     open: false,
                     attrs: attributes! {

@@ -6,5 +6,6 @@ pub mod dialog;
 pub mod input;
 pub mod label;
 pub mod separator;
+pub mod site_footer;
 pub mod site_header;
 pub mod toggle;
