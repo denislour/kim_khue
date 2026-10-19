@@ -1,4 +1,5 @@
 mod app;
+mod fonts;
 mod i18n;
 
 #[tokio::main]

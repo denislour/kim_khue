@@ -4,6 +4,7 @@ use topcoat::router::{layout, Slot};
 use topcoat::runtime::RouterBuilderRuntimeExt;
 use crate::i18n::{Locale, Messages, messages};
 static TEXT: &Messages = messages(Locale::Vi);
+use topcoat::context::Cx;
 
 pub fn router() -> Router {
     module_router!().discover()
@@ -12,10 +13,11 @@ pub fn router() -> Router {
         .build()
 }
 #[layout]
-async fn root(slot: Slot<'_>) -> Result<impl View> {
+async fn root(cx: &Cx, slot: Slot<'_>) -> Result<impl View> {
 Ok(view! { <!DOCTYPE html><html lang=(TEXT.lang)><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>(TEXT.title)</title>
+<style>(crate::fonts::styles(cx))</style>
 <link rel="stylesheet" href=(topcoat::tailwind::stylesheet!())>
 topcoat::runtime::script()
 topcoat::dev::script()
