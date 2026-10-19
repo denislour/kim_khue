@@ -12,6 +12,8 @@ use crate::{
         badge::{BadgeVariant, badge},
         button::{ButtonSize, ButtonVariant, button, button_variants},
         card::{card, card_content, card_description, card_footer, card_header, card_title},
+        input::input,
+        label::label,
         separator::separator,
     },
     features::SAMPLE_STORIES,
@@ -165,6 +167,22 @@ async fn home() -> Result<impl View> {
                         <h2 id="stories-heading">(TEXT.stories_heading)</h2>
                         <p>(TEXT.library_intro)</p>
                     </div>
+                    <form class="search" id="search-form" role="search" hidden=(true)>
+                        label(
+                            attrs: attributes! { class="sr-only" for="story-search" },
+                            (TEXT.search_label)
+                        )
+                        <span aria-hidden="true" class="search-icon"></span>
+                        input(
+                            attrs: attributes! {
+                                id="story-search"
+                                type="search"
+                                name="q"
+                                placeholder=(TEXT.search_placeholder)
+                                autocomplete="off"
+                            }
+                        )
+                    </form>
                 </div>
                 <p class="sample-notice">(TEXT.sample_notice)</p>
                 <p class="no-results" hidden=(SAMPLE_STORIES.is_empty())>
@@ -225,6 +243,17 @@ async fn home() -> Result<impl View> {
                             )
                         )
                     }
+                </div>
+                <div class="no-results" id="no-results" hidden=(true)>
+                    <p>(TEXT.no_results)</p>
+                    button(
+                        attrs: attributes! {
+                            id="clear-search"
+                            type="button"
+                            class="clear-search-button"
+                        },
+                        (TEXT.clear_search)
+                    )
                 </div>
             </section>
 
