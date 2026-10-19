@@ -40,15 +40,43 @@ h1, h2, h3, h4, p { margin: 0; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
 .shell { width: min(1180px, calc(100% - 96px)); margin-inline: auto; }
+.skip-link { position: fixed; top: 12px; left: 12px; transform: translateY(-200%); z-index: 30; padding: 12px 20px; background: var(--ink); color: white; }
+.skip-link:focus { transform: none; }
+.site-header { display: flex; align-items: center; gap: 48px; min-height: 112px; border-bottom: 1px solid var(--line); position: relative; z-index: 1; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; margin-right: auto; }
+.brand img { flex-shrink: 0; }
+.brand-name { display: block; font: 500 34px/1.1 var(--display); letter-spacing: .02em; }
+.brand-note { display: block; font-size: 10px; line-height: 1.5; margin-top: 6px; color: var(--muted); }
+.main-nav { display: flex; align-items: center; gap: 33px; }
+.main-nav a, .header-reading { font-size: 12px; text-decoration: none; padding-block: 12px; }
+.main-nav a:hover, .site-footer a:hover { text-decoration: underline; }
+.header-reading { border-bottom: 1px solid var(--gold); }
+.header-reading span { padding-left: 10px; color: var(--gold); }
+.header-reading:hover { color: var(--ochre); border-color: var(--ochre); }
 h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 @media (max-width: 1000px) {
   .shell { width: calc(100% - 64px); }
+  .site-header { gap: 28px; }
 }
 @media (max-width: 720px) {
   .shell { width: calc(100% - 40px); }
+  .site-header { min-height: 91px; gap: 18px; }
+  .brand img { width: 44px; height: 44px; }
+  .brand-name { font-size: 28px; }
+  .brand-note { font-size: 9px; }
+  .main-nav { gap: 17px; }
+  .main-nav a { font-size: 11px; }
+  .header-reading { display: none; }
   h2 { font-size: 35px; }
+}
+@media (max-width: 420px) {
+  .main-nav { gap: 11px; }
+  .brand-note { max-width: 125px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+.main-nav a { height: auto; padding-inline: 0; border: 0; border-radius: 0; background: transparent; font-weight: 400; }
+.header-reading { height: auto; padding-inline: 0; border: 0; border-bottom: 1px solid var(--gold); border-radius: 0; background: transparent; font-weight: 400; }

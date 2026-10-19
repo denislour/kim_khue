@@ -1,4 +1,5 @@
 mod app;
+mod components;
 mod fonts;
 mod i18n;
 
