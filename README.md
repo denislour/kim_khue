@@ -44,20 +44,24 @@ a custom SVG logo, and covers styled after thread-bound books.
 The current stories are **demo content**. Replace them with your own writing
 in the `SAMPLE_STORIES` list in `src/features.rs`.
 
-- `src/app.rs`: page layout and HTML rendered with Topcoat's `view!` macro.
+- `src/app.rs`: router configuration, assets, runtime, and app context.
+- `src/app/_layout.rs`: the root document and shared layout component composition.
+- `src/app/_home.rs`: home page section composition with Topcoat's `view!` macro.
 - `src/i18n.rs`: interface messages; Vietnamese is currently enabled.
 - `src/features.rs`: the sample `Story` data structure and demo stories.
 - `styles.css`: the white and earth-gold Topcoat UI theme and Tailwind configuration.
 - `styles.custom.css`: typography, responsive layouts, and custom presentation.
-- `src/components/`: Topcoat UI components.
+- `src/components/ui/`: Topcoat UI components managed by the CLI.
+- `src/components/home/`: home page components, including the header, footer, hero, author introduction, reading dialog, story library, and story cards.
+  The `story_library/`, `story_card/`, and `reader_dialog/` subdirectories contain their smaller child components.
 - `app.js`: a backup of the legacy JavaScript logic, currently excluded from the page.
 - `src/fonts.rs`, `assets/fonts/`: self-hosted fonts with Vietnamese support and OFL licenses.
 - `assets/*.svg`: custom logo, landscape artwork, and story covers.
 
-The interface locale is selected by `static TEXT` in `src/app.rs`:
+The interface locale is selected by `static I18N` in `src/i18n.rs`:
 
 ```rust
-static TEXT: &Messages = messages(Locale::Vi);
+pub(crate) static I18N: &Messages = messages(Locale::Vi);
 ```
 
 Story previews use native HTML `<details>` elements. Search and filter controls
@@ -81,11 +85,15 @@ cargo run
 | --- | --- |
 | `src/app.rs`, `src/app/` | The route tree: the router, layouts, pages, and routes. |
 | `src/features.rs`, `src/features/` | Everything one feature owns, such as its data and business rules. |
+| `src/components/ui.rs`, `src/components/ui/` | Topcoat UI components; `components.toml` directs CLI additions here. |
+| `src/components/home.rs`, `src/components/home/` | Home page and layout components. |
 | `src/config.rs` | Load `.env` and application configuration before starting Tokio. |
 | `src/db.rs`, `src/model.rs` | Shared Toasty database connection and models. |
 | `src/bin/seed.rs`, `src/seed.rs` | Separate seed command and demo data insertion. |
 
-Pages in `app` use features and components. A feature can use shared components but never imports from `app`, and shared components never import from a feature.
+Pages in `app` compose the components in `components/home`. These components
+can use feature data and the building blocks in `components/ui`. Keep business
+rules in `features`; Topcoat UI components remain independent of those features.
 
 ## Learn more
 
