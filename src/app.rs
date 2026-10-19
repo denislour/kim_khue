@@ -9,7 +9,9 @@ use topcoat::{
 
 use crate::{
     components::{
+        badge::{BadgeVariant, badge},
         button::{ButtonSize, ButtonVariant, button, button_variants},
+        card::{card, card_content, card_description, card_footer, card_header, card_title},
         separator::separator,
     },
     features::SAMPLE_STORIES,
@@ -24,6 +26,14 @@ pub fn router() -> Router {
         .assets(AssetBundle::load().unwrap())
         .runtime()
         .build()
+}
+
+fn cover(name: &str) -> Asset {
+    match name {
+        "mai" => asset!("assets/hoa-mai.svg"),
+        "moon" => asset!("assets/moon.svg"),
+        _ => asset!("assets/landscape.svg"),
+    }
 }
 
 #[layout]
@@ -142,6 +152,76 @@ async fn home() -> Result<impl View> {
                     separator(attrs: attributes! { class="hero-rule" })
                     <img src=(asset!("assets/logo.svg")) width="30" height="30" alt="">
                     separator(attrs: attributes! { class="hero-rule" })
+                </div>
+            </section>
+
+            <section
+                class="library shell"
+                id="library"
+                aria-labelledby="stories-heading"
+            >
+                <div class="library-heading">
+                    <div>
+                        <h2 id="stories-heading">(TEXT.stories_heading)</h2>
+                        <p>(TEXT.library_intro)</p>
+                    </div>
+                </div>
+                <p class="sample-notice">(TEXT.sample_notice)</p>
+                <div class="books" id="books">
+                    for story in SAMPLE_STORIES {
+                        card(
+                            attrs: attributes! {
+                                class="story"
+                                id=(format!("story-{}", story.id))
+                                data-genre=(story.genre_key)
+                                role="article"
+                                aria-labelledby=(format!("title-{}", story.id))
+                            },
+                            <div
+                                class=(format!("book-cover cover-{}", story.cover))
+                                aria-hidden="true"
+                            >
+                                <span class="book-binding"></span>
+                                <img
+                                    class="cover-art"
+                                    src=(cover(story.cover))
+                                    width="400"
+                                    height="500"
+                                    alt=""
+                                    loading="lazy"
+                                >
+                                <div class="cover-title">
+                                    <span>(story.title)</span>
+                                    <span class="cover-author">(TEXT.brand)</span>
+                                </div>
+                                <span class="cover-seal">"KK"</span>
+                                <span class="cover-rule"></span>
+                            </div>
+                            card_header(
+                                attrs: attributes! { class="book-copy" },
+                                <div class="book-meta">
+                                    badge(
+                                        variant: BadgeVariant::Outline,
+                                        attrs: attributes! { class="genre-badge" },
+                                        (story.genre)
+                                    )
+                                    badge(
+                                        variant: BadgeVariant::Outline,
+                                        attrs: attributes! { class="sample-label" },
+                                        (TEXT.sample_badge)
+                                    )
+                                </div>
+                                card_title(
+                                    attrs: attributes! { class="story-title" id=(format!("title-{}", story.id)) },
+                                    (story.title)
+                                )
+                                card_description(
+                                    attrs: attributes! { class="story-summary" },
+                                    (story.summary)
+                                )
+                            )
+                        )
+                    }
                 </div>
             </section>
 

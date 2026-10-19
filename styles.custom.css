@@ -69,7 +69,33 @@ h1 { font: 500 clamp(55px, 5.3vw, 76px)/1.06 var(--display); letter-spacing: -.0
 .hero-bottom { position: absolute; inset: auto 0 0; display: flex; align-items: center; gap: 20px; }
 .hero-bottom .hero-rule { flex: 1; min-width: 0; width: auto; height: 1px; background: var(--line); }
 .hero-bottom img { opacity: .65; }
+.library { padding-block: 65px 84px; }
+.library-heading { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
 h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
+.library-heading p { font: 13px/1.8 var(--reading); color: var(--muted); margin-top: 10px; }
+.sample-notice { font-size: 10px; line-height: 1.7; color: var(--muted); margin-block: 20px 26px; }
+.books { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px; }
+.story { display: block; min-width: 0; scroll-margin-top: 32px; padding: 0; gap: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.book-copy, .book-actions { display: block; padding: 0; gap: 0; }
+.book-cover { height: 345px; position: relative; overflow: hidden; margin: 0 10px 26px 3px; background: #deca9e; border-radius: 1px 4px 4px 1px; box-shadow: 5px 5px 0 -1px #e7dac0, 6px 6px 0 -1px #baa47b, 11px 14px 22px -16px #60421f4d; transform-origin: center bottom; transition: transform .3s; }
+.story:hover .book-cover { transform: translateY(-4px) rotate(-.5deg); }
+.book-cover::after { content: ""; position: absolute; inset: 0; box-shadow: inset 13px 0 12px -14px #4d3319, inset -1px 0 #fff3d380; pointer-events: none; }
+.cover-art { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.cover-mountain .cover-art { width: 210%; max-width: none; height: 105%; left: -97%; top: 9%; object-fit: cover; opacity: .85; }
+.cover-title { position: absolute; top: 25px; right: 24px; display: flex; gap: 8px; align-items: flex-start; }
+.cover-title > span:first-child { font: 500 27px/1.22 var(--display); writing-mode: vertical-rl; max-height: 270px; background: #fcf0d7e0; border: 1px solid #bba477; padding: 16px 10px; color: #543b20; }
+:lang(vi) .cover-title > span:first-child { font-size: 24px; }
+.cover-author { writing-mode: vertical-rl; font: 12px/1 var(--display); padding-top: 11px; opacity: .9; }
+.cover-moon .cover-author { color: #f3dfb7; }
+.cover-seal { position: absolute; bottom: 24px; right: 25px; width: 22px; height: 26px; display: grid; place-items: center; font: 11px/1 var(--display); color: #f9f3e6; background: #8b4036; border: 2px double #b17c6a; }
+.cover-rule { position: absolute; inset: 12px; border: 1px solid #f5f1d34a; }
+.book-binding { position: absolute; z-index: 1; top: 0; bottom: 0; left: 13px; width: 9px; border-inline: 1px solid #71502c40; background: repeating-linear-gradient(to bottom, transparent 0 24px, #eddbad 24px 26px, transparent 26px 28px, #eddbad 28px 30px, transparent 30px 67px); }
+.book-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 10px; color: var(--ochre); }
+.sample-label, .genre-badge { border: 0; border-radius: 0; background: transparent; padding: 0; font-weight: 400; }
+.genre-badge { font-size: 10px; color: var(--ochre); }
+.sample-label { color: var(--muted); font: 10px/1.6 var(--ui); }
+.story-title { font: 500 27px/1.2 var(--display); margin-top: 11px; }
+.story-summary { font: 12px/1.95 var(--reading); color: #725d42; margin-top: 12px; min-height: 72px; max-width: 38ch; }
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-block: 38px; }
 .footer-brand { font: 500 25px/1.2 var(--display); text-decoration: none; }
 .site-footer p, .site-footer > a:last-child { font-size: 10px; color: var(--muted); }
@@ -82,6 +108,10 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   .hero-landscape { width: 750px; right: -32px; top: 30px; opacity: .8; }
   .hero-copy { width: 63%; }
   .landscape-inscription { right: 0; }
+  .books { gap: 30px; }
+  .book-cover { height: 310px; }
+  .cover-title { right: 15px; }
+  .story-title { font-size: 25px; }
 }
 @media (max-width: 720px) {
   .shell { width: calc(100% - 40px); }
@@ -101,7 +131,18 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   .primary-link { margin-top: 23px; }
   .hero-landscape { top: auto; bottom: 20px; right: -20px; width: 600px; opacity: .8; }
   .landscape-inscription { top: auto; bottom: 135px; right: 0; font-size: 11px; max-height: 170px; }
+  .library { padding-block: 43px 52px; }
+  .library-heading { align-items: start; flex-direction: column; gap: 20px; }
   h2 { font-size: 35px; }
+  .sample-notice { font-size: 9px; }
+  .books { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 25px; }
+  .book-cover { height: 290px; margin-right: 6px; }
+  .cover-title { top: 19px; right: 15px; gap: 5px; }
+  .cover-title > span:first-child, :lang(vi) .cover-title > span:first-child { font-size: 23px; padding: 12px 7px; max-height: 240px; }
+  .cover-author { font-size: 11px; }
+  .book-meta { flex-wrap: wrap; gap: 5px; }
+  .story-title { font-size: 24px; }
+  .story-summary { font-size: 11px; min-height: 0; }
   .site-footer { flex-wrap: wrap; gap: 14px; padding-block: 28px; }
   .site-footer p { width: 100%; order: 2; }
 }
@@ -112,6 +153,12 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   :lang(vi) h1 { font-size: 45px; }
   .hero-landscape { width: 520px; }
   .hero { min-height: 735px; }
+  .books { gap: 30px 18px; }
+  .book-cover { height: 255px; }
+  .cover-title > span:first-child, :lang(vi) .cover-title > span:first-child { font-size: 20px; max-height: 215px; }
+  .cover-title { right: 12px; }
+  .cover-author { display: none; }
+  .story-title { font-size: 23px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
