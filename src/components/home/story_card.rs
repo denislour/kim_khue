@@ -1,6 +1,8 @@
+mod story_cover;
+mod story_excerpt;
+
 use crate::{
     components::ui::{
-        accordion::{accordion, accordion_content, accordion_item, accordion_trigger},
         badge::{BadgeVariant, badge},
         card::{card, card_description, card_footer, card_header, card_title},
     },
@@ -9,17 +11,8 @@ use crate::{
 };
 use topcoat::{
     Result,
-    asset::{Asset, asset},
     view::{View, attributes, component, view},
 };
-
-fn cover(name: &str) -> Asset {
-    match name {
-        "mai" => asset!("assets/hoa-mai.svg"),
-        "moon" => asset!("assets/moon.svg"),
-        _ => asset!("assets/landscape.svg"),
-    }
-}
 
 #[component]
 pub async fn story_card(story: &Story) -> Result<impl View> {
@@ -32,23 +25,7 @@ pub async fn story_card(story: &Story) -> Result<impl View> {
                 role="article"
                 aria-labelledby=(format!("title-{}", story.id))
             },
-            <div class=(format!("book-cover cover-{}", story.cover)) aria-hidden="true">
-                <span class="book-binding"></span>
-                <img
-                    class="cover-art"
-                    src=(cover(story.cover))
-                    width="400"
-                    height="500"
-                    alt=""
-                    loading="lazy"
-                >
-                <div class="cover-title">
-                    <span>(story.title)</span>
-                    <span class="cover-author">(I18N.brand)</span>
-                </div>
-                <span class="cover-seal">"KK"</span>
-                <span class="cover-rule"></span>
-            </div>
+            story_cover::story_cover(story: story)
             card_header(
                 attrs: attributes! { class="book-copy" },
                 <div class="book-meta">
@@ -74,19 +51,7 @@ pub async fn story_card(story: &Story) -> Result<impl View> {
             )
             card_footer(
                 attrs: attributes! { class="book-actions" },
-                accordion(
-                    accordion_item(
-                        attrs: attributes! { class="story-preview" },
-                        accordion_trigger((I18N.read_sample))
-                        accordion_content(
-                            attrs: attributes! { class="excerpt" },
-                            <h4>(story.chapter)</h4>
-                            for paragraph in story.excerpt {
-                                <p>(paragraph)</p>
-                            }
-                        )
-                    )
-                )
+                story_excerpt::story_excerpt(story: story)
             )
         )
     })
