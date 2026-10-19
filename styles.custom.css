@@ -53,14 +53,35 @@ p { text-wrap: pretty; }
 .header-reading { border-bottom: 1px solid var(--gold); }
 .header-reading span { padding-left: 10px; color: var(--gold); }
 .header-reading:hover { color: var(--ochre); border-color: var(--ochre); }
+.hero { min-height: 625px; position: relative; display: flex; align-items: center; isolation: isolate; }
+.hero-landscape { position: absolute; width: 850px; max-width: none; height: auto; right: -42px; top: 1px; z-index: -1; pointer-events: none; }
+.hero-copy { width: 54%; padding-block: 62px 86px; }
+.hero-signature { display: flex; align-items: center; gap: 12px; font-size: 11px; color: var(--ochre); margin-bottom: 27px; }
+.hero-signature span { display: block; width: 28px; height: 1px; background: var(--gold); }
+h1 { font: 500 clamp(55px, 5.3vw, 76px)/1.06 var(--display); letter-spacing: -.025em; white-space: pre-line; max-width: 600px; }
+:lang(vi) h1 { font-size: clamp(48px, 4.6vw, 66px); line-height: 1.22; }
+.hero-intro { font: 400 15px/1.95 var(--reading); max-width: 370px; margin-top: 25px; color: #6b573e; }
+.primary-link { display: inline-flex; align-items: center; gap: 32px; padding: 16px 22px; background: var(--ochre); color: #fff6e4; text-decoration: none; font-size: 12px; margin-top: 30px; border: 1px solid var(--ochre); transition: background .2s; }
+.primary-link:hover { background: #65431f; }
+.primary-link span { font-size: 18px; color: #ebce8b; }
+.hero-footnote { font-size: 10px; color: var(--muted); margin-top: 15px; }
+.landscape-inscription { position: absolute; right: 6px; top: 83px; writing-mode: vertical-rl; font: 13px/1.6 var(--reading); color: #715a3b; max-height: 285px; }
+.hero-bottom { position: absolute; inset: auto 0 0; display: flex; align-items: center; gap: 20px; }
+.hero-bottom .hero-rule { flex: 1; min-width: 0; width: auto; height: 1px; background: var(--line); }
+.hero-bottom img { opacity: .65; }
 h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-block: 38px; }
 .footer-brand { font: 500 25px/1.2 var(--display); text-decoration: none; }
 .site-footer p, .site-footer > a:last-child { font-size: 10px; color: var(--muted); }
 .site-footer > a:last-child { text-decoration: none; }
+@media (min-width: 1450px) { .hero-landscape { right: -80px; width: 910px; } }
 @media (max-width: 1000px) {
   .shell { width: calc(100% - 64px); }
   .site-header { gap: 28px; }
+  .hero { min-height: 590px; }
+  .hero-landscape { width: 750px; right: -32px; top: 30px; opacity: .8; }
+  .hero-copy { width: 63%; }
+  .landscape-inscription { right: 0; }
 }
 @media (max-width: 720px) {
   .shell { width: calc(100% - 40px); }
@@ -71,6 +92,15 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
   .main-nav { gap: 17px; }
   .main-nav a { font-size: 11px; }
   .header-reading { display: none; }
+  .hero { min-height: 735px; align-items: start; }
+  .hero-copy { width: 100%; padding-block: 44px 310px; }
+  .hero-signature { margin-bottom: 20px; }
+  h1 { font-size: 62px; max-width: 440px; }
+  :lang(vi) h1 { font-size: 52px; }
+  .hero-intro { max-width: 360px; font-size: 14px; margin-top: 20px; }
+  .primary-link { margin-top: 23px; }
+  .hero-landscape { top: auto; bottom: 20px; right: -20px; width: 600px; opacity: .8; }
+  .landscape-inscription { top: auto; bottom: 135px; right: 0; font-size: 11px; max-height: 170px; }
   h2 { font-size: 35px; }
   .site-footer { flex-wrap: wrap; gap: 14px; padding-block: 28px; }
   .site-footer p { width: 100%; order: 2; }
@@ -78,6 +108,10 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 @media (max-width: 420px) {
   .main-nav { gap: 11px; }
   .brand-note { max-width: 125px; }
+  h1 { font-size: 53px; }
+  :lang(vi) h1 { font-size: 45px; }
+  .hero-landscape { width: 520px; }
+  .hero { min-height: 735px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -86,4 +120,5 @@ h2 { font: 500 40px/1.2 var(--display); letter-spacing: -.015em; }
 
 .main-nav a { height: auto; padding-inline: 0; border: 0; border-radius: 0; background: transparent; font-weight: 400; }
 .header-reading { height: auto; padding-inline: 0; border: 0; border-bottom: 1px solid var(--gold); border-radius: 0; background: transparent; font-weight: 400; }
+.primary-link { height: auto; border-radius: 0; font-weight: 400; }
 .back-to-top { height: auto; padding-inline: 0; border: 0; border-radius: 0; background: transparent; font-weight: 400; }

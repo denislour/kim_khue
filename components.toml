@@ -11,3 +11,7 @@ file = "styles.css"
 [registries.topcoat.components.button]
 hash = "sha256:260ed94b12414e4a0e625f75fae88aa51e20954171dcba65cb3cd1937a75ee4d"
 file = "src/components/button.rs"
+
+[registries.topcoat.components.separator]
+hash = "sha256:7ba5a7628128e1811e960884bd56da34f754c1d516230b4442dfbc1cb97e73e9"
+file = "src/components/separator.rs"
