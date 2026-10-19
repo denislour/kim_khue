@@ -84,6 +84,20 @@ async fn root(cx: &Cx, slot: Slot<'_>) -> Result<impl View> {
                     </a>
                 </header>
                 (slot)
+                <footer class="site-footer shell">
+                    <a class="footer-brand" href="#top" translate="no">(TEXT.brand)</a>
+                    <p>(TEXT.footer)</p>
+                    <a
+                        class=(class!(
+                            button_variants(ButtonVariant::Ghost, ButtonSize::Sm),
+                            "back-to-top",
+                        ))
+                        href="#top"
+                    >
+                        (TEXT.back_top)
+                        <span aria-hidden="true">" ↑"</span>
+                    </a>
+                </footer>
             </body>
         </html>
     })
