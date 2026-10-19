@@ -7,6 +7,7 @@ pub mod dialog;
 pub mod home_hero;
 pub mod input;
 pub mod label;
+pub mod reader_dialog;
 pub mod separator;
 pub mod site_footer;
 pub mod site_header;
