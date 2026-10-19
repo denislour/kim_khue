@@ -7,7 +7,7 @@ use topcoat::{
 #[component]
 pub async fn story_grid(stories: &[Story]) -> Result<impl View> {
     Ok(view! {
-        <p class="no-results" hidden=(stories.is_empty())>(I18N.empty_stories)</p>
+        <p class="no-results" hidden=(!stories.is_empty())>(I18N.empty_stories)</p>
         <div class="books" id="books">
             for story in stories {
                 story_card(story: story)
