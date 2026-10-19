@@ -21,6 +21,7 @@ Ok(view! { <!DOCTYPE html><html lang=(TEXT.lang)><head><meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href=(asset!("assets/logo.svg"))>
 <style>(crate::fonts::styles(cx))</style>
 <link rel="stylesheet" href=(topcoat::tailwind::stylesheet!())>
+<link rel="stylesheet" href=(asset!("styles.custom.css"))>
 topcoat::runtime::script()
 topcoat::dev::script()
 </head><body>(slot)</body></html> })
