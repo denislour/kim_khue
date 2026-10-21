@@ -3,29 +3,25 @@ use std::{env, error::Error};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().skip(1).collect();
-    let initialize = match args.as_slice() {
-        [] => false,
-        [arg] if arg == "--init" => true,
+    match args.as_slice() {
+        [] => (),
+        [arg] if arg == "--init" => (),
         [arg] if arg == "--help" || arg == "-h" => {
             println!("Usage: cargo run --bin seed -- [--init]");
-            println!("  --init  Create tables in a new database before seeding.");
+            println!("  --init  Ensure tables exist before seeding (also done by connect).");
             return Ok(());
         }
         _ => return Err("Usage: cargo run --bin seed -- [--init]".into()),
     };
 
-    run(Config::load()?, initialize)
+    run(Config::load()?)
 }
 
 #[tokio::main]
-async fn run(config: Config, initialize: bool) -> Result<(), Box<dyn Error>> {
+async fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let mut db = db::connect(&config.database_url).await?;
 
-    if initialize {
-        db.push_schema().await?;
-    }
-
     let inserted = seed::run(&mut db).await?;
-    println!("Đã thêm {inserted} truyện mẫu.");
+    println!("Đã cập nhật dữ liệu seed; thêm mới {inserted} truyện.");
     Ok(())
 }
