@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+ <title>Kim Khuê — biểu tượng cách điệu từ chữ Kim 金</title>
+ <style>
+  :root { --logo-gold: #a88036; --logo-brown: #64401f; }
+  @media (prefers-color-scheme: dark) {
+   :root { --logo-gold: #dfbd77; --logo-brown: #b48958; }
+  }
+ </style>
+ <defs>
+  <linearGradient id="earth-gold" gradientUnits="userSpaceOnUse" x1="10" y1="29" x2="70" y2="51">
+   <stop stop-color="var(--logo-gold)"/>
+   <stop offset="1" stop-color="var(--logo-brown)"/>
+  </linearGradient>
+ </defs>
+ <!-- The crown and open-book base retain the outline inspired by 金. -->
+ <path d="M40 8C33 20 24 27 12 32l-3 5c12-2 23-10 31-20 8 10 19 18 31 20l-3-5C56 27 47 20 40 8Z" fill="url(#earth-gold)"/>
+ <!-- A river bends between two brush-shaped banks and opens onto the book below.
+      The small gold skiff makes the centre a landscape rather than a literal glyph. -->
+ <path d="M46 27c-13 6-16 10-9 15 6 5 3 8-4 13-3 2-4 4-2 7-7-4-5-8 0-12 7-5 9-7 3-11-6-5-2-9 12-12Z" fill="url(#earth-gold)"/>
+ <path d="M51 32c-9 5-10 7-6 10 6 5 4 9-2 14-3 3-4 5-3 9-5-4-4-8 0-12 6-5 7-7 3-10-5-4-4-7 8-11Z" fill="url(#earth-gold)"/>
+ <path d="M23 40q6 2 12-2c-2 6-7 8-12 2Z" fill="url(#earth-gold)"/>
+ <!-- The lower-right stroke answers the upper-left stroke with a half-turn. -->
+ <path d="M59 52q-6-2-12 2c2-6 7-8 12-2Z" fill="url(#earth-gold)"/>
+ <!-- The last horizontal of 金 becomes the low, unframed opening of a book. -->
+ <path d="M13 61c10-1 19 1 27 7 8-6 17-8 27-7l-2 5c-9-1-17 1-25 6-8-5-16-7-25-6Z" fill="url(#earth-gold)"/>
+</svg>

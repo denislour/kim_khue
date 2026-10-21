@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 690" fill="none">
+<defs>
+ <filter id="distant-ink" x="-15%" y="-10%" width="130%" height="120%"><feGaussianBlur stdDeviation=".24"/></filter>
+ <linearGradient id="wash" x2="0" y2="1"><stop stop-color="#a28a5a" stop-opacity=".47"/><stop offset="1" stop-color="#a28a5a" stop-opacity=".03"/></linearGradient>
+ <linearGradient id="near" x2="0" y2="1"><stop stop-color="#7a603a" stop-opacity=".85"/><stop offset="1" stop-color="#b09b70" stop-opacity=".15"/></linearGradient>
+ <linearGradient id="fade"><stop stop-color="white" stop-opacity="0"/><stop offset=".24" stop-color="white"/><stop offset=".9" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity=".3"/></linearGradient>
+ <linearGradient id="bottom" x2="0" y2="1"><stop offset=".7" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+ <mask id="edges"><path fill="url(#fade)" d="M0 0h1000v690H0z"/></mask>
+ <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".038 .17" numOctaves="3" seed="8"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".15"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+ <mask id="floor"><path fill="url(#bottom)" d="M0 0h1000v690H0z"/></mask>
+</defs>
+<g mask="url(#edges)"><g mask="url(#floor)">
+<circle cx="710" cy="155" r="57" fill="#c6a04c" opacity=".45"/>
+<circle cx="710" cy="155" r="65" stroke="#b28a3b" opacity=".2"/>
+<path d="M56 445c41-33 68-70 92-109l23-20 22-36 17 23 18 17 23-30 16-35 25-49 17 19 14 31 21 33 26-39 18-35 28-71 17 15 21 23 19-20 25-43 16 29 14 16 13 47 15 39 14-13 13-29 23 20 26 32 23-16 31-39 21-39 19 26 22 18 19 29 25-15 20-28 29 33 20 37 36 34 108-54v319H56Z" fill="#baa77e" opacity=".19"/>
+<path d="M143 456c49-30 59-65 83-98l16-10 21-33 13 10 16 18 25-30 17-39 16-20 18-46 22-46 11 15 8 18 11 14 18-3 20-13 11 20 12 21 8 26 24 37 12-6 10-13 19 10 20 24 20-20 19-27 15-28 18 28 13 11 10 27 16 22 18-16 24-27 22 26 16 35 30 25 26-16 111 137Z" fill="url(#wash)"/>
+<path d="m273 390 28-58 30-15 19-63 40-92 4 86 29 32 18 81 29 37m-62-189 11 68 38 20 21 66m108-74 18 63 37 31" stroke="#a18b60" stroke-width="1.5" opacity=".45"/>
+
+<g stroke="#74562d" stroke-width=".7" opacity=".15" stroke-linecap="round">
+<path d="M390.6 223.1q-14.0 37.0 -40.9 108.1t-17.1 45.1"/>
+<path d="M384.5 221.1q-14.0 37.0 -33.9 89.7t-14.1 37.4"/>
+<path d="M394.2 187.6q-14.0 37.0 -15.4 40.8t-6.4 17.0"/>
+<path d="M387.0 220.1q-14.0 37.0 -21.6 57.1t-9.0 23.8"/>
+<path d="M390.0 198.2q-14.0 37.0 -37.8 99.9t-15.8 41.6"/>
+<path d="M401.6 202.5q-14.0 37.0 -42.0 110.9t-17.5 46.2"/>
+<path d="M378.6 223.4q-14.0 37.0 -38.6 102.0t-16.1 42.5"/>
+<path d="M380.9 218.0q-14.0 37.0 -30.0 79.2t-12.5 33.0"/>
+<path d="M401.8 192.7q-14.0 37.0 -29.4 77.8t-12.3 32.4"/>
+<path d="M399.9 214.6q-14.0 37.0 -23.1 61.2t-9.6 25.5"/>
+<path d="M379.1 229.9q-14.0 37.0 -27.6 73.1t-11.5 30.4"/>
+<path d="M402.9 189.2q-14.0 37.0 -36.9 97.5t-15.4 40.6"/>
+<path d="M398.1 228.9q-14.0 37.0 -15.2 40.1t-6.3 16.7"/>
+<path d="M386.7 184.6q-14.0 37.0 -35.2 93.1t-14.7 38.8"/>
+<path d="M386.2 230.9q-14.0 37.0 -24.9 65.9t-10.4 27.5"/>
+<path d="M397.1 226.3q-14.0 37.0 -21.2 56.1t-8.8 23.4"/>
+<path d="M420.5 280.8q9.2 24.0 19.1 49.9t8.0 20.8"/>
+<path d="M415.4 245.6q9.2 24.0 23.8 62.0t9.9 25.8"/>
+<path d="M411.0 262.8q9.2 24.0 19.6 51.2t8.2 21.3"/>
+<path d="M420.4 238.6q9.2 24.0 21.5 56.0t8.9 23.3"/>
+<path d="M429.8 248.3q9.2 24.0 15.6 40.7t6.5 17.0"/>
+<path d="M429.6 261.5q9.2 24.0 14.6 38.0t6.1 15.8"/>
+<path d="M406.3 270.4q9.2 24.0 15.9 41.5t6.6 17.3"/>
+<path d="M418.1 245.9q9.2 24.0 21.0 54.8t8.8 22.8"/>
+<path d="M425.0 247.8q9.2 24.0 11.0 28.7t4.6 12.0"/>
+<path d="M431.7 278.4q9.2 24.0 10.0 26.2t4.2 10.9"/>
+<path d="M420.7 267.0q9.2 24.0 16.9 44.1t7.0 18.4"/>
+<path d="M425.0 281.0q9.2 24.0 20.2 52.8t8.4 22.0"/>
+<path d="M416.2 242.0q9.2 24.0 14.2 37.0t5.9 15.4"/>
+<path d="M409.9 237.6q9.2 24.0 13.5 35.1t5.6 14.6"/>
+<path d="M427.9 259.4q9.2 24.0 24.1 62.9t10.0 26.2"/>
+<path d="M429.9 273.4q9.2 24.0 10.5 27.5t4.4 11.5"/>
+<path d="M823.1 236.7q-13.0 32.0 -33.2 81.7t-13.8 34.0"/>
+<path d="M820.8 265.5q-13.0 32.0 -23.9 58.8t-10.0 24.5"/>
+<path d="M801.0 236.3q-13.0 32.0 -29.8 73.3t-12.4 30.5"/>
+<path d="M805.3 259.1q-13.0 32.0 -20.4 50.2t-8.5 20.9"/>
+<path d="M803.2 247.1q-13.0 32.0 -32.0 78.8t-13.3 32.8"/>
+<path d="M811.7 252.0q-13.0 32.0 -26.0 64.0t-10.8 26.6"/>
+<path d="M813.4 258.3q-13.0 32.0 -24.9 61.4t-10.4 25.6"/>
+<path d="M824.2 270.3q-13.0 32.0 -19.5 47.9t-8.1 20.0"/>
+<path d="M807.3 241.6q-13.0 32.0 -22.9 56.3t-9.5 23.5"/>
+<path d="M799.7 270.0q-13.0 32.0 -28.0 69.0t-11.7 28.8"/>
+<path d="M810.0 277.6q-13.0 32.0 -22.0 54.1t-9.2 22.5"/>
+<path d="M814.0 279.4q-13.0 32.0 -27.7 68.3t-11.6 28.5"/>
+<path d="M814.9 250.8q-13.0 32.0 -39.0 95.9t-16.2 40.0"/>
+<path d="M818.6 247.5q-13.0 32.0 -22.7 55.8t-9.4 23.2"/>
+<path d="M814.4 258.5q-13.0 32.0 -26.9 66.3t-11.2 27.6"/>
+<path d="M804.0 261.4q-13.0 32.0 -31.5 77.5t-13.1 32.3"/>
+<path d="M847.9 278.9q10.4 28.0 20.0 53.7t8.3 22.4"/>
+<path d="M841.1 283.3q10.4 28.0 20.6 55.3t8.6 23.1"/>
+<path d="M828.3 269.4q10.4 28.0 31.0 83.3t12.9 34.7"/>
+<path d="M849.5 279.8q10.4 28.0 26.2 70.5t10.9 29.4"/>
+<path d="M833.5 269.6q10.4 28.0 21.4 57.7t8.9 24.0"/>
+<path d="M846.2 257.4q10.4 28.0 20.5 55.2t8.5 23.0"/>
+<path d="M851.6 287.2q10.4 28.0 31.1 83.6t12.9 34.8"/>
+<path d="M830.6 302.3q10.4 28.0 27.9 75.1t11.6 31.3"/>
+<path d="M828.7 283.4q10.4 28.0 26.3 70.9t11.0 29.5"/>
+<path d="M833.8 289.1q10.4 28.0 28.2 75.8t11.7 31.6"/>
+<path d="M848.6 277.8q10.4 28.0 12.1 32.6t5.0 13.6"/>
+<path d="M842.0 265.6q10.4 28.0 21.8 58.8t9.1 24.5"/>
+<path d="M835.0 273.7q10.4 28.0 21.9 59.1t9.1 24.6"/>
+<path d="M849.3 305.7q10.4 28.0 19.1 51.5t8.0 21.5"/>
+<path d="M828.2 294.3q10.4 28.0 17.8 47.9t7.4 20.0"/>
+<path d="M847.7 298.4q10.4 28.0 11.6 31.2t4.8 13.0"/>
+</g>
+<path d="M150 520c64-54 104-76 146-71 46 5 95-43 151-41 79 2 119 51 175 39 59-13 129-68 187-41 57 26 104 54 191 17v267H111Z" fill="#b8a378" opacity=".15"/>
+<path d="M568 526c39-41 70-51 95-91l11-27 8-10 12-33 12-5 14-4 10-29 13-19 12-41 15-7 12-13 12-28 9-11 16-24 13 8 11 9 9 30 8 12 9 37 12 9 18 5 10 27 1 17 9 20 17 11 17 18 47 20v293H524Z" fill="url(#near)"/>
+<path d="m680 433 27-44 14-34 33-18 18-63 15-13 32-77-6 103 29 29-4 42 38 20 10 52 28 19m-112-132-19 67-2 49-19 31m114-148-7 55 26 34 2 51 22 34" stroke="#74562d" stroke-width="2" opacity=".52"/>
+<path d="m755 385 22-10 4-29m21 23 12 37-13 24m43-76 20 24-2 37m-134 33 23-22 7-17m73 42 22 19m-101-127-13 28m75-76 11 24" stroke="#e0d0a8" stroke-width="2" opacity=".48"/>
+<path d="M182 595c174-52 243-76 362-64 58 6 97 27 166 16 84-13 135-31 240-1" stroke="#a48c5d" opacity=".35"/>
+<path d="M244 624c104-26 247-51 355-37m-255 55c80-15 195-27 255-20m-135 28 135-9" stroke="#a48c5d" opacity=".22"/>
+<!-- A brush-drawn waterside pavilion, seen obliquely through the river mist. -->
+<g transform="translate(506 444)" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M-9 100q54-8 124-4l24 8q-71 11-153 3Z" fill="#96794e" opacity=".09"/>
+ <!-- The lifted eaves are a single flowing silhouette, with a lighter roof plane. -->
+ <path d="M-8 40C14 43 31 26 51 10L63-5C75 16 96 33 119 33l14-7c-5 15-23 21-52 24l-62 4C7 51-2 47-8 40Z" fill="#98784b" fill-opacity=".8" stroke="#715431" stroke-width="1.4"/>
+ <path d="M19 49C37 33 52 21 63 0c2 19 10 34 19 46-22 1-43 3-63 3Z" fill="#c3a778" opacity=".55"/>
+ <path d="M65 4c13 17 28 29 47 32L83 46C75 35 69 20 65 4Z" fill="#795a36" opacity=".5"/>
+ <path d="M-7 41q20 15 44 9l45-3q33-2 49-18M14 53q34 2 69-2l28-8" fill="none" stroke="#604728" stroke-width="1.6"/>
+ <path d="M28 44Q49 25 60 9M40 46Q54 29 62 13M53 45q7-12 12-26m7 9 10 14m-7-17 19 16m-9-10 18 8" fill="none" stroke="#ead9b7" stroke-width=".8" opacity=".65"/>
+ <path d="m62 0 1-9q1-3 3-2" fill="none" stroke="#75562f" stroke-width="1.4"/>
+ <!-- Tapered posts and an open bay keep the building airy rather than box-shaped. -->
+ <path d="m19 56 1 39 3-1-1-39Zm60-3 1 43 3-1-1-43Zm29-10-1 42 3-1 1-42Z" fill="#755733"/>
+ <path d="M24 57q26 2 51-2m9-2 19-8" fill="none" stroke="#a08456" stroke-width="1.3"/>
+ <path d="M34 61v26m32-28v29m22-32-1 31m11-36-1 32" fill="none" stroke="#987a4e" stroke-width="1.4"/>
+ <path d="M29 88q23 3 44 0m-43-6 42 1m-31 0v6m17-5v5m27-1 17-8m-16 3 16-8" fill="none" stroke="#8a6a40" stroke-width="1.1"/>
+ <path d="M17 95 82 99l29-15 8 4-35 17-73-5Z" fill="#b59a6b" fill-opacity=".65" stroke="#91734b" stroke-width="1"/>
+ <path d="m17 103 65 4 25-12m-85 12 60 4 18-9M9 101q-22 10-35 12m146-24 17 7" fill="none" stroke="#ad9163" stroke-width="1" opacity=".8"/>
+ <path d="m22 116 41 2m9 1 16-1m-33 5 20 1" fill="none" stroke="#9b8055" stroke-width=".7" opacity=".3"/>
+</g>
+<!-- A fan palm enters from the lower-right edge, leaving the inscription's sky clear. -->
+<g id="right-palm" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M1027 700c-13-53-23-99-35-151" stroke="#79603b" stroke-width="4.2"/>
+ <path d="M1025 688c-8-44-16-84-26-119" stroke="#c3a675" stroke-width="1.1" opacity=".7"/>
+ <!-- Each tapered blade follows its own arc; gaps leave the fan light against the mist. -->
+ <g fill="#8c6e41" fill-opacity=".82">
+  <path d="M992 551q-74-12-138-51c58 10 104 24 138 51Z"/>
+  <path d="M991 551q-68-31-111-85c47 24 83 53 111 85Z"/>
+  <path d="M991 550q-48-46-64-98c31 34 53 66 64 98Z"/>
+  <path d="M991 550q-24-54-15-102c11 39 17 73 15 102Z"/>
+  <path d="M993 550q-3-54 28-94c-8 38-18 69-28 94Z"/>
+  <path d="M994 550q20-49 67-72c-26 32-47 55-67 72Z"/>
+  <path d="M993 552q40-33 87-34c-35 17-62 28-87 34Z"/>
+  <path d="M991 553q-58 9-110-13c43-3 81 2 110 13Z"/>
+  <path d="M993 553q-36 30-79 31c27-18 54-29 79-31Z"/>
+  <path d="M995 552q20 16 31 41c-18-12-29-25-31-41Z"/>
+ </g>
+ <g stroke="#d5bc8e" stroke-width=".65" opacity=".7">
+  <path d="M991 550q-58-24-102-37m103 37q-50-43-96-72m97 72q-33-43-57-80m58 80q-11-47-14-85m15 84 20-74m-19 76 47-56m-51 59-88-8m90 9-64 24"/>
+ </g>
+ <!-- A smaller drooping fan stays mostly outside the frame. -->
+ <path d="M1009 626q16-20 35-31" stroke="#80653e" stroke-width="1.8"/>
+ <path d="M1037 600q-57-3-93-27c43 6 72 15 93 27Zm0 0q-55 13-99 3c42-9 75-10 99-3Zm1 1q-46 31-86 29c34-16 64-26 86-29Zm0 1q-21 39-53 54c18-28 36-45 53-54Z" fill="#8c6e41" opacity=".66"/>
+</g>
+<g stroke="#886b3c" stroke-width="1.5" opacity=".7"><path d="m509 203 9 4 10-7m22 21 7 3 8-5m-71-5 5 2 6-4"/></g>
+<!-- A slender skiff and a boatman leaning into the rhythm of his pole. -->
+<g transform="translate(364 561)" stroke-linecap="round" stroke-linejoin="round">
+ <!-- A light bamboo canopy is set behind the boatman, leaving his silhouette clear. -->
+ <path d="M43 17C46-5 64-11 81 2l13 14-12 7Z" fill="#d6c099" fill-opacity=".65" stroke="#9b7d50" stroke-width="1"/>
+ <path d="M46 15C50 1 65-5 78 5m-22 9C56 7 58 2 62-2m8 0q7 7 9 18m-33 2 37 4" fill="none" stroke="#9e8358" stroke-width=".8" opacity=".75"/>
+ <!-- A suggestion of a ferryman: a few diluted ink marks, without face or costume details. -->
+ <g opacity=".57" filter="url(#distant-ink)">
+  <path d="M32-22 20 42" stroke="#876d48" stroke-width=".85"/>
+  <path d="M16-13c3-2 5 0 6 4l-1 9 3 12q-7 3-14 1c4-7 4-12 4-18Z" fill="#826743"/>
+  <path d="m19-8 5 5 5-5m-12 4 6 5 4-2" stroke="#826743" stroke-width="1.35"/>
+  <path d="m17-18 3 1-1 5-3-1Z" fill="#826743"/>
+  <path d="m10-17 8-7 9 7q-8 2-17 0Z" fill="#a58a5e"/>
+  <path d="m14 13-1 4m6-4 2 4" stroke="#826743" stroke-width="1"/>
+ </g>
+ <path d="M-10 14Q13 26 71 20q21-2 36-11-7 16-29 21-42 8-70-2L-10 14Z" fill="#9e8052" fill-opacity=".6" stroke="#8a6a3f" stroke-width="1.1"/>
+ <path d="M-8 14q33 15 85 8 20-3 29-12m-87 19 29 2m8-1 21-3" fill="none" stroke="#70522e" stroke-width=".85"/>
+ <path d="M-7 35q21 2 36 1m-7 6 34 1m13-6 22-2m-41 14 15 1m-5 5 12-1" fill="none" stroke="#9c8054" stroke-width=".7" opacity=".4"/>
+</g>
+</g></g>
+</svg>
