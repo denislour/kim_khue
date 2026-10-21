@@ -32,7 +32,7 @@
    color at reduced opacity. The sidebar has its own accent token for
    interactive rows, so it can be themed independently.
 
-   KKUI (Be Vietnam Pro) is self-hosted by src/fonts.rs. */
+   Cormorant Garamond is the single self-hosted typeface, registered by src/fonts.rs. */
 
 @import "tailwindcss";
 
@@ -48,7 +48,9 @@
    `border-border`, ...). The indirection through plain variables on `:root`
    and `.dark` is what lets the values swap when the color scheme changes. */
 @theme inline {
-  --font-sans: "KKUI", sans-serif;
+  --font-sans: "Cormorant Garamond", serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "Cormorant Garamond", serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -75,24 +77,24 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #463321;
-  --card: #ffffff;
-  --card-foreground: #463321;
-  --popover: #ffffff;
-  --popover-foreground: #4c3825;
-  --muted-foreground: #6e5a40;
-  --primary: #805b2d;
-  --primary-foreground: #fff6e4;
-  --destructive: #8b4036;
-  --destructive-foreground: #fff6e4;
-  --border: #d8c6a3;
-  --ring: #805b2d;
+  --background: light-dark(#ffffff, #30271e);
+  --foreground: light-dark(#463321, #eee0c4);
+  --card: light-dark(#ffffff, #382c20);
+  --card-foreground: light-dark(#463321, #eee0c4);
+  --popover: light-dark(#ffffff, #382c20);
+  --popover-foreground: light-dark(#4c3825, #eee0c4);
+  --muted-foreground: light-dark(#604c35, #ddcbaa);
+  --primary: light-dark(#805b2d, #ebce8b);
+  --primary-foreground: light-dark(#fff6e4, #30271e);
+  --destructive: light-dark(#8b4036, #e3a098);
+  --destructive-foreground: light-dark(#fff6e4, #30271e);
+  --border: light-dark(#d8c6a3, #806b4e);
+  --ring: light-dark(#805b2d, #ebce8b);
   --sidebar: var(--card);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: #e8d6ad;
+  --sidebar-accent: light-dark(#e8d6ad, #53412b);
   --sidebar-accent-foreground: #61431f;
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
@@ -107,7 +109,7 @@
   --card-foreground: #eee0c4;
   --popover: #382c20;
   --popover-foreground: #eee0c4;
-  --muted-foreground: #d5c2a1;
+  --muted-foreground: #ddcbaa;
   --primary: #ebce8b;
   --primary-foreground: #30271e;
   --destructive: #e3a098;
