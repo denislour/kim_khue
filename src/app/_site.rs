@@ -1,8 +1,8 @@
 mod _home;
-mod components;
+mod shared;
 mod stories;
 
-use self::components::shared::{site_footer, site_header};
+use self::shared::{site_footer, site_header};
 use crate::i18n::I18N;
 use topcoat::{
     Result,

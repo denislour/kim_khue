@@ -1,8 +1,10 @@
-#[path = "genre_filters.rs"]
+#[path = "story_library/genre_filters.rs"]
 mod genre_filters_component;
-#[path = "story_grid.rs"]
+#[path = "story_library/story_card.rs"]
+mod story_card_component;
+#[path = "story_library/story_grid.rs"]
 mod story_grid_component;
-#[path = "story_search.rs"]
+#[path = "story_library/story_search.rs"]
 mod story_search_component;
 
 use genre_filters_component::genre_filters;

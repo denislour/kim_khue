@@ -1,5 +1,14 @@
-use super::components::home::{author_intro, home_hero, story_library};
+#[path = "_home/author_intro.rs"]
+mod author_intro_component;
+#[path = "_home/home_hero.rs"]
+mod home_hero_component;
+#[path = "_home/story_library.rs"]
+mod story_library_component;
+
 use crate::{db::db, services};
+use author_intro_component::author_intro;
+use home_hero_component::home_hero;
+use story_library_component::story_library;
 use topcoat::{
     Result,
     context::Cx,

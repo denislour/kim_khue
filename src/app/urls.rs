@@ -14,7 +14,7 @@ fn encode_component(value: &str) -> String {
 }
 
 pub(crate) fn story_url(slug: &str) -> String {
-    format!("/truyen/{}", encode_component(slug))
+    format!("/stories/{}", encode_component(slug))
 }
 
 pub(crate) fn chapter_url(slug: &str, position: u64) -> String {
@@ -45,8 +45,8 @@ mod tests {
 
     #[test]
     fn navigation_encodes_values_and_preserves_chapter_positions() {
-        assert_eq!(chapter_url("river", 2), "/truyen/river?chapter=2#chapter");
-        assert_eq!(story_url("a/b?#"), "/truyen/a%2Fb%3F%23");
+        assert_eq!(chapter_url("river", 2), "/stories/river?chapter=2#chapter");
+        assert_eq!(story_url("a/b?#"), "/stories/a%2Fb%3F%23");
         assert_eq!(library_url("", "all", 1), "/#library");
         assert_eq!(
             library_url(" Đèn & ", "wuxia", 2),

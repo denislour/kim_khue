@@ -1,5 +1,5 @@
+use super::story_card_component::story_card;
 use crate::{
-    app::_site::components::shared::story_card,
     i18n::I18N,
     model::{Chapter, Story},
 };

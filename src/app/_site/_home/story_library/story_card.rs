@@ -1,4 +1,4 @@
-#[path = "story_cover.rs"]
+#[path = "story_card/story_cover.rs"]
 mod story_cover_component;
 
 use story_cover_component::story_cover;

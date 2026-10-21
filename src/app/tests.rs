@@ -132,8 +132,8 @@ async fn home_and_story_render_the_real_nested_layouts_once() {
     let router = test_router(fixture().await);
     for uri in [
         "/",
-        "/truyen/ben-cu-dong-ngan",
-        "/truyen/ben-cu-dong-ngan?chapter=2",
+        "/stories/ben-cu-dong-ngan",
+        "/stories/ben-cu-dong-ngan?chapter=2",
     ] {
         let (status, headers, html) = dispatch(&router, Method::GET, uri).await;
         assert_eq!(status, StatusCode::OK, "{uri}: {html}");
@@ -155,11 +155,11 @@ async fn home_and_story_render_the_real_nested_layouts_once() {
 #[tokio::test]
 async fn legacy_slug_redirects_to_the_selected_canonical_chapter() {
     let router = test_router(fixture().await);
-    let (status, headers, _) = dispatch(&router, Method::GET, "/truyen/river?chapter=2").await;
+    let (status, headers, _) = dispatch(&router, Method::GET, "/stories/river?chapter=2").await;
     assert_eq!(status, StatusCode::PERMANENT_REDIRECT);
     assert_eq!(
         headers["location"],
-        "/truyen/ben-cu-dong-ngan?chapter=2#chapter"
+        "/stories/ben-cu-dong-ngan?chapter=2#chapter"
     );
 }
 
@@ -167,11 +167,14 @@ async fn legacy_slug_redirects_to_the_selected_canonical_chapter() {
 async fn missing_stories_and_chapters_and_invalid_queries_have_http_errors() {
     let router = test_router(fixture().await);
     for (uri, expected) in [
-        ("/truyen/missing", StatusCode::NOT_FOUND),
-        ("/truyen/ben-cu-dong-ngan?chapter=99", StatusCode::NOT_FOUND),
-        ("/truyen/ben-cu-dong-ngan?chapter=0", StatusCode::NOT_FOUND),
+        ("/stories/missing", StatusCode::NOT_FOUND),
         (
-            "/truyen/ben-cu-dong-ngan?chapter=abc",
+            "/stories/ben-cu-dong-ngan?chapter=99",
+            StatusCode::NOT_FOUND,
+        ),
+        ("/stories/ben-cu-dong-ngan?chapter=0", StatusCode::NOT_FOUND),
+        (
+            "/stories/ben-cu-dong-ngan?chapter=abc",
             StatusCode::BAD_REQUEST,
         ),
     ] {
@@ -185,10 +188,14 @@ async fn route_groups_and_component_modules_are_not_public_paths() {
     let router = test_router(fixture().await);
     for uri in [
         "/_site",
-        "/_site/truyen/ben-cu-dong-ngan",
+        "/_home",
+        "/home",
+        "/_site/stories/ben-cu-dong-ngan",
         "/components",
+        "/shared",
         "/components/shared",
         "/stories",
+        "/truyen/ben-cu-dong-ngan",
     ] {
         let (status, _, html) = dispatch(&router, Method::GET, uri).await;
         assert_eq!(status, StatusCode::NOT_FOUND, "{uri}: {html}");
@@ -242,7 +249,7 @@ async fn catalog_pagination_preserves_filters_and_total_match_count() {
 #[tokio::test]
 async fn pages_reject_post_requests() {
     let router = test_router(fixture().await);
-    for uri in ["/", "/truyen/ben-cu-dong-ngan"] {
+    for uri in ["/", "/stories/ben-cu-dong-ngan"] {
         let (status, headers, html) = dispatch(&router, Method::POST, uri).await;
         assert_eq!(status, StatusCode::METHOD_NOT_ALLOWED, "{uri}: {html}");
         assert!(
@@ -278,15 +285,15 @@ async fn written_unpublished_body_is_absent_from_reader_and_home_preview() {
     let router = test_router(db);
     for uri in [
         "/",
-        "/truyen/ben-cu-dong-ngan",
-        "/truyen/ben-cu-dong-ngan?chapter=1",
-        "/truyen/ben-cu-dong-ngan?chapter=2",
+        "/stories/ben-cu-dong-ngan",
+        "/stories/ben-cu-dong-ngan?chapter=1",
+        "/stories/ben-cu-dong-ngan?chapter=2",
     ] {
         let (status, _, html) = dispatch(&router, Method::GET, uri).await;
         assert_eq!(status, StatusCode::OK, "{uri}: {html}");
         assert_layout(&html);
         assert!(!html.contains(DRAFT_PROSE), "draft body leaked in {uri}");
-        if uri.starts_with("/truyen/") && !uri.ends_with("chapter=2") {
+        if uri.starts_with("/stories/") && !uri.ends_with("chapter=2") {
             assert!(html.contains("class=\"chapter-draft\""));
             assert!(!html.contains("class=\"chapter-prose\""));
         } else if uri.ends_with("chapter=2") {

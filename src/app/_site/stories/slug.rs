@@ -1,5 +1,11 @@
-use super::super::components::reading::{chapter_content, chapter_index};
+#[path = "slug/chapter_content.rs"]
+mod chapter_content_component;
+#[path = "slug/chapter_index.rs"]
+mod chapter_index_component;
+
 use crate::{app::urls::chapter_url, db::db, i18n::I18N, services::story::read};
+use chapter_content_component::chapter_content;
+use chapter_index_component::chapter_index;
 use topcoat::{
     Result,
     context::Cx,
