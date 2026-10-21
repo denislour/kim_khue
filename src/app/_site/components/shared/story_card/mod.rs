@@ -1,13 +1,16 @@
-mod story_cover;
-mod story_excerpt;
+#[path = "story_cover.rs"]
+mod story_cover_component;
+
+use story_cover_component::story_cover;
 
 use crate::{
+    app::urls::story_url,
     components::ui::{
         badge::{BadgeVariant, badge},
-        card::{card, card_description, card_footer, card_header, card_title},
+        card::{card, card_description, card_header, card_title},
     },
-    features::Story,
     i18n::I18N,
+    model::{Chapter, Story},
 };
 use topcoat::{
     Result,
@@ -15,43 +18,36 @@ use topcoat::{
 };
 
 #[component]
-pub async fn story_card(story: &Story) -> Result<impl View> {
+pub async fn story_card(story: &Story, preview: Option<&Chapter>) -> Result<impl View> {
     Ok(view! {
         card(
             attrs: attributes! {
                 class="story"
-                id=(format!("story-{}", story.id))
-                data-genre=(story.genre_key)
+                id=(format!("story-{}", story.slug))
+                data-genre=(&story.genre_key)
                 role="article"
                 aria-labelledby=(format!("title-{}", story.id))
             },
-            story_cover::story_cover(story: story)
+            story_cover(story: story, preview: preview)
             card_header(
                 attrs: attributes! { class="book-copy" },
                 <div class="book-meta">
                     badge(
                         variant: BadgeVariant::Outline,
                         attrs: attributes! { class="genre-badge" },
-                        (story.genre)
-                    )
-                    badge(
-                        variant: BadgeVariant::Outline,
-                        attrs: attributes! { class="sample-label" },
-                        (I18N.sample_badge)
+                        (I18N.genre_label(&story.genre_key))
                     )
                 </div>
                 card_title(
                     attrs: attributes! { class="story-title" id=(format!("title-{}", story.id)) },
-                    (story.title)
+                    <a href=(format!("{}#chapter", story_url(&story.slug)))>
+                        (&story.title)
+                    </a>
                 )
                 card_description(
                     attrs: attributes! { class="story-summary" },
-                    (story.summary)
+                    (&story.summary)
                 )
-            )
-            card_footer(
-                attrs: attributes! { class="book-actions" },
-                story_excerpt::story_excerpt(story: story)
             )
         )
     })

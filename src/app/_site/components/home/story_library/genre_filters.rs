@@ -1,14 +1,18 @@
 use crate::{
-    components::ui::toggle::{ToggleKind, ToggleSize, toggle, toggle_group},
+    components::ui::{
+        toggle::toggle_group,
+        toggle::{ToggleKind, ToggleSize, toggle},
+    },
     i18n::I18N,
 };
 use topcoat::{
     Result,
+    runtime::{Event, Signal},
     view::{View, attributes, component, view},
 };
 
 #[component]
-pub async fn genre_filters() -> Result<impl View> {
+pub async fn genre_filters(genre: &Signal<String>, page: &Signal<usize>) -> Result<impl View> {
     let genres = [
         ("all", I18N.all_genres),
         ("wuxia", I18N.wuxia),
@@ -30,7 +34,11 @@ pub async fn genre_filters() -> Result<impl View> {
                         name="genre"
                         value=(key)
                         data-genre=(key)
-                        checked=(key == "all")
+                        :checked=$(genre.get() == key)
+                        @change=$(|_e: Event| {
+                            page.set(1);
+                            genre.set(key.to_owned());
+                        })
                         class="genre-toggle"
                     },
                     (text)

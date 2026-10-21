@@ -1,5 +1,5 @@
 use crate::{
-    components::ui::card::{card, card_content, card_description},
+    components::ui::{card::card, card::card_content, card::card_description},
     i18n::I18N,
 };
 use topcoat::{
@@ -17,7 +17,7 @@ pub async fn author_intro() -> Result<impl View> {
                 card_content(
                     attrs: attributes! { class="about-art" aria-hidden="true" },
                     <img
-                        src=(asset!("assets/logo.svg"))
+                        src=(asset!("assets/logo-kim-khue.svg"))
                         width="160"
                         height="160"
                         alt=""

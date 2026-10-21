@@ -8,6 +8,7 @@ use crate::{
 use topcoat::{
     Result,
     asset::asset,
+    icon::{icon, iconify::iconify_icon},
     view::{View, attributes, class, component, view},
 };
 
@@ -17,7 +18,7 @@ pub async fn home_hero() -> Result<impl View> {
         <section class="hero shell" aria-labelledby="hero-title">
             <img
                 class="hero-landscape"
-                src=(asset!("assets/landscape.svg"))
+                src=(asset!("assets/landscape-hero.svg"))
                 width="1000"
                 height="690"
                 alt=""
@@ -38,14 +39,33 @@ pub async fn home_hero() -> Result<impl View> {
                     href="#library"
                 >
                     (I18N.explore)
-                    <span aria-hidden="true">" ↗"</span>
+                    icon(
+                        data: iconify_icon!("lucide:arrow-up-right"),
+                        attrs: attributes! { class="link-icon" aria-hidden="true" }
+                    )
                 </a>
                 <p class="hero-footnote">(I18N.hero_footnote)</p>
             </div>
-            <p class="landscape-inscription">(I18N.hero_quote)</p>
+            <div class="landscape-inscription">
+                for quote in [I18N.hero_quote, I18N.hero_quote_second] {
+                    <p>
+                        <span class="sr-only">(quote)</span>
+                        <span class="inscription-words" aria-hidden="true">
+                            for word in quote.split_whitespace() {
+                                <span>(word)</span>
+                            }
+                        </span>
+                    </p>
+                }
+            </div>
             <div class="hero-bottom" aria-hidden="true">
                 separator(attrs: attributes! { class="hero-rule" })
-                <img src=(asset!("assets/logo.svg")) width="30" height="30" alt="">
+                <img
+                    src=(asset!("assets/logo-kim-khue.svg"))
+                    width="30"
+                    height="30"
+                    alt=""
+                >
                 separator(attrs: attributes! { class="hero-rule" })
             </div>
         </section>
