@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS stories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    slug TEXT NOT NULL UNIQUE,
+    title TEXT NOT NULL,
+    genre_key TEXT NOT NULL,
+    cover TEXT NOT NULL,
+    summary TEXT NOT NULL
+);
