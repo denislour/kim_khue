@@ -45,21 +45,21 @@ The library reads story metadata and opening chapters from SQLite through the st
 The seed command can insert three demo stories from `src/seed/data.rs`;
 the interface does not import demo fixtures or fall back to them.
 
-- `src/app/mod.rs`: module router, root HTML layout, assets, runtime, and app context.
+- `src/app.rs`: module router, root HTML layout, assets, runtime, and app context.
 - `src/app/urls.rs`: encoded story/chapter links and filter-preserving library URLs.
 - `src/app/tests.rs`: HTTP routing, layout, pagination, and draft-privacy regression tests.
-- `src/app/_site/mod.rs`: the site route group and its header/footer layout.
+- `src/app/_site.rs`: the site route group and its header/footer layout.
 - `src/app/_site/_home.rs`: the `/` page, story service calls, and visible composition tree.
-- `src/app/_site/stories/mod.rs`: the English-named module mapped to the `truyen` URL segment.
-- `src/app/_site/stories/slug.rs`: `/truyen/{slug}`, the story detail and chapter reading page.
+- `src/app/_site/stories.rs`: the English `/stories` route prefix.
+- `src/app/_site/stories/slug.rs`: `/stories/{slug}`, the story detail and chapter reading page.
 - `src/i18n.rs`: interface messages; Vietnamese is currently enabled.
 - `src/seed/data.rs`: demo metadata used only by the seed command.
 - `styles.css`: the white and earth-gold Topcoat UI theme and Tailwind configuration.
 - `styles.custom.css`: typography, responsive layouts, and custom presentation.
 - `src/components/ui/`: Topcoat UI component families managed by the CLI.
-- `src/app/_site/components/home/`: home sections; smaller library components live under `story_library/`.
-- `src/app/_site/components/shared/`: site-shared components; card internals live under their parent component directory.
-- `src/app/_site/components/reading/`: chapter index and chapter content for the story detail page.
+- `src/app/_site/_home/`: homepage-owned sections and story-library components.
+- `src/app/_site/shared.rs` and `shared/`: site header and footer.
+- `src/app/_site/stories/slug/`: chapter index and chapter content.
 - `app.js`: a backup of the legacy JavaScript logic, currently excluded from the page.
 - `src/fonts.rs`, `assets/fonts/`: self-hosted fonts with Vietnamese support and OFL licenses.
 - `assets/*.svg`: custom logo, landscape artwork, and story covers.
@@ -79,14 +79,14 @@ links preserve filters and work without JavaScript. Search or genre changes
 reset the page to one. The result count includes all matches, not just the
 visible page. Out-of-range pages show a link back to the first page.
 
-Each title links to `/truyen/{slug}`, a server-rendered reading page. The page
+Each title links to `/stories/{slug}`, a server-rendered reading page. The page
 lists every chapter, marks unpublished drafts, and shows the persisted chapter
 text with previous/next navigation. Chapter links keep their position in
 `?chapter=N`, so a chapter is shareable and survives a reload. Chapter pages
 render without JavaScript; the chapter index uses a native disclosure that opens
 by default on wide screens when the runtime is available.
 
-**Bến Cũ Đông Ngàn** opens at <http://127.0.0.1:3000/truyen/ben-cu-dong-ngan>.
+**Bến Cũ Đông Ngàn** opens at <http://127.0.0.1:3000/stories/ben-cu-dong-ngan>.
 Click its cover or title in the library to start chapter one. Its 13 chapter
 entries and complete prose are stored in SQLite. A fresh seed publishes all
 13 chapters; subsequent seeding preserves deliberate publication changes.
@@ -95,7 +95,7 @@ and the full story arc is in
 `src/seed/dong_ngan/outline.md`. Running the seed command migrates the old
 `river` demo in place, preserves subsequent author edits, and adds any missing
 chapter entries or fills empty chapter drafts. The story update is atomic; rerunning
-the seed command preserves nonempty author-edited chapters. `/truyen/river` redirects to the renamed story.
+the seed command preserves nonempty author-edited chapters. The legacy story slug remains available at `/stories/river` and permanently redirects to the canonical story slug. The retired `/truyen/{slug}` route does not redirect.
 
 Connecting to SQLite applies pending SQL files in `migrations/` through Toasty.
 Applied versions and timestamps are stored in `schema_migrations`. Upgrades run
@@ -129,27 +129,21 @@ cargo run
 
 ```text
 src/
+├── app.rs                    # Module router + root HTML layout
 ├── app/
-│   ├── mod.rs                # Module router + root HTML layout
+│   ├── _site.rs              # Public-site layout
+│   ├── tests.rs              # HTTP integration tests
 │   ├── urls.rs               # Web navigation helpers
-│   ├── tests.rs              # HTTP regression tests
 │   └── _site/
-│       ├── mod.rs            # Site group + header/footer layout
-│       ├── _home.rs          # GET /, service calls and component tree
-│       ├── stories/
-│       │   ├── mod.rs        # URL segment renamed to truyen
-│       │   └── slug.rs       # GET /truyen/{slug}, chapter reading page
-│       └── components/
-│           ├── mod.rs
-│           ├── home/         # mod.rs + home-specific components
-│           ├── shared/       # mod.rs + story cards, header, footer
-│           └── reading/      # mod.rs + chapter index and content
-├── components/
-│   ├── mod.rs
-│   └── ui/                   # mod.rs + CLI-managed Topcoat UI files
-├── services/
-│   ├── mod.rs
-│   └── story.rs              # Reusable story queries
+│       ├── _home.rs          # GET /
+│       ├── _home/            # Homepage-owned components
+│       ├── stories.rs        # /stories route prefix, no index page
+│       ├── stories/slug.rs   # GET /stories/{slug}
+│       └── shared.rs         # Site header/footer components
+├── components.rs
+├── components/ui.rs          # CLI-managed Topcoat UI modules
+├── services.rs
+├── services/story.rs        # Story queries and business logic
 └── seed/
     ├── mod.rs                # Seed operations
     ├── data.rs               # Demo metadata
@@ -158,27 +152,19 @@ src/
         └── ...               # Chapter text and outline
 ```
 
-`src/app/mod.rs` calls `module_router!()` and is the root of the route tree.
-
-### Rust module style
-
-Modules with child files use `folder/mod.rs`, rather than a sibling `folder.rs`.
-For example, `components/ui/mod.rs` declares `button.rs` and `card.rs` in the
-same folder. Leaf modules remain regular `.rs` files. This keeps each section's
-entry point inside its folder; it does not reduce the total file count.
-Rust module names and imports stay the same, so Topcoat's route paths and
-layout nesting are unchanged. UI component file paths in `components.toml`
-also stay unchanged.
-Pages and layouts use bare `#[page]` and `#[layout]` attributes; the router
-registers them from compiled Rust modules. Each module still needs a `mod`
-declaration: Topcoat does not scan the filesystem.
+`src/app.rs` calls `module_router!()` and is the root of the route tree. This
+project uses Rust's file-entry convention: a module with children is declared
+in `name.rs`, and its child files live in `name/`. Topcoat registers only
+compiled route modules; ordinary component modules do not create routes.
+The Topcoat UI files remain in their current directory because
+`components.toml` references those paths.
 
 | Handler | Served URL / scope | Purpose |
 | --- | --- | --- |
 | `app::root` | All pages | Root HTML document, styles, fonts, and scripts. |
 | `app::_site::site_layout` | The `_site` group | Shared site header, skip link, and footer. |
 | `app::_site::_home::home_page` | `/` | Home page. |
-| `app::_site::stories::slug::story_page` | `/truyen/{slug}` | Story detail and chapter reading page. |
+| `app::_site::stories::slug::story_page` | `/stories/{slug}` | Story detail and chapter reading page. |
 
 ### Route groups and layouts
 
@@ -186,15 +172,14 @@ declaration: Topcoat does not scan the filesystem.
   removes the group name from public URLs. Its `#[layout]` function wraps
   only pages in that group.
 - `_home` is another group module so its page serves `/`, not `/home`.
-- `stories/mod.rs` uses `segment!(rename = "truyen")`: code names stay English
-  while existing Vietnamese URLs remain unchanged. It declares no `/truyen`
-  index page.
+- `stories.rs` supplies the `/stories` prefix; it does not add a `/stories`
+  index page. The detail handler uses `module_param!(slug)`.
 - `slug.rs` uses `module_param!(slug)` to define the dynamic URL segment.
 - Unlike Next.js, `layout.rs` and `page.rs` are not special filenames.
   Topcoat identifies handlers through attributes and derives paths from modules.
 
 Layout chains are **Root → Site → Home** and **Root → Site → Reading**.
-The root layout contains no site header or footer. A future `app/admin/mod.rs`
+The root layout contains no site header or footer. A future `app/admin.rs`
 with its own `#[layout]` and child modules can serve `/admin/...`
 under **Root → Admin**, without inheriting the site layout. No admin routes
 are added until that feature is needed.
@@ -213,65 +198,51 @@ live on the home page and are passed to the library.
 
 Use one rule: section-specific UI lives inside its route section; general UI
 lives at the application level. Website components live in
-`src/app/_site/components/`. Future admin-only components belong in
-`src/app/admin/components/`. General Topcoat UI components stay in
+`src/app/_site/` beside the route that owns them. General Topcoat UI components stay at
 `src/components/ui/`, shared across sections, with CLI registry paths unchanged.
 
 The site's `components` module contains only components, not route handlers.
 It does not expose a `/components` URL. Folder placement communicates ownership;
 Rust module visibility controls access. Database operations remain in `services`.
 
-Component internals are organized below their owning component:
+Page-specific components are colocated with their owning page:
 
 ```text
-src/app/_site/components/
-├── mod.rs
-├── home/
-│   ├── mod.rs
+app/_site/
+├── _home.rs
+├── _home/
 │   ├── home_hero.rs
 │   ├── author_intro.rs
+│   ├── story_library.rs
 │   └── story_library/
-│       ├── mod.rs
 │       ├── story_search.rs
 │       ├── genre_filters.rs
-│       └── story_grid.rs
-├── shared/
-│   ├── mod.rs
-│   ├── site_header.rs
-│   ├── site_footer.rs
-│   └── story_card/
-│       ├── mod.rs
-│       └── story_cover.rs
-└── reading/
-    ├── mod.rs
-    ├── chapter_index.rs
-    └── chapter_content.rs
+│       ├── story_grid.rs
+│       ├── story_card.rs
+│       └── story_card/story_cover.rs
+├── stories/slug.rs
+├── stories/slug/
+│   ├── chapter_index.rs
+│   └── chapter_content.rs
+├── shared.rs
+└── shared/
+    ├── site_header.rs
+    └── site_footer.rs
 ```
 
-The home and shared `mod.rs` files use `#[path]` to give their internal modules
-distinct names and re-export the components. Pages and layouts can import the
-component names without repeating their module names:
+The route files use explicit `mod` declarations to include their colocated
+components. `#[path]` aliases are used when distinct names avoid collisions with
+the component macro. To add a page, add a route module under `_site/`, declare
+it in `_site.rs`, and add a `#[page]` handler. To add a shared site component,
+put it under `shared/` and declare it in `shared.rs`. Story-detail components
+belong under `stories/slug/` and are declared from `slug.rs`.
 
-```rust
-use super::components::home::{
-    author_intro, home_hero, story_library,
-};
-```
+Parent components compose their private child components internally. Explicit
+`#[path]` aliases retain distinct module names where needed to avoid collisions
+with the names generated by Topcoat's `#[component]` macro.
 
-Parent components compose their private child components internally. They use
-`#[path]` to give each child module a distinct name, then import the component
-for a short call without a module prefix:
-
-```rust
-// Inside home/story_library/mod.rs:
-#[path = "story_search.rs"]
-mod story_search_component;
-use story_search_component::story_search;
-```
-
-This avoids a collision between the module name and the type generated by
-Topcoat's `#[component]` macro while keeping the nested files in place. Topcoat UI components use their original family files, with
-`components.toml` retaining the registry paths and hashes used by the CLI.
+Topcoat UI components use their original family files, with `components.toml`
+retaining the registry paths and hashes used by the CLI.
 
 Keep database queries and business operations in `services`. The home page
 initializes query/genre/page signals and calls `services::story::search_page`;
