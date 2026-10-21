@@ -6,6 +6,9 @@ default-run = "kim_khue"
 
 [dependencies]
 dotenvy = "0.15.7"
+serde = { version = "1", features = ["derive"] }
+time = "0.3"
+unicode-normalization = "0.1"
 toasty = { version = "0.11.0", features = ["sqlite"] }
 tokio = { version = "1.51.1", features = ["macros", "rt-multi-thread"] }
 topcoat = { version = "0.10.0", default-features = false, features = ["asset", "discover", "router", "serve", "view", "tailwind", "ui", "runtime", "icon-iconify"] }
